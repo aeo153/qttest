@@ -7,6 +7,8 @@ class TestStd
 public:
     TestStd();
     void testList();
+
+    void TestCopy();
 };
 
 #endif // TESTSTD_H

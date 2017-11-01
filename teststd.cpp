@@ -204,3 +204,39 @@ void TestStd::testList()
     std::map<int, UserInfo> intUserMap;
     intUserMap.insert(std::map<int, UserInfo>::value_type(5, UserInfo(5, "Lucy")));
 }
+
+void TestStd::TestCopy()
+{
+    //copy list to list
+    std::list<std::string> oldList;
+    std::list<std::string> newList;
+    oldList.push_back("test1");
+    oldList.push_back("test2");
+    oldList.push_back("test3");
+
+    std::copy(oldList.begin(), oldList.end(), std::back_inserter(newList));
+
+    //copy vector to vector
+    std::vector<std::string> oldVector;
+    std::vector<std::string> newVector;
+    oldVector.push_back("test4");
+    oldVector.push_back("test5");
+    oldVector.push_back("test6");
+    std::copy(oldVector.begin(), oldVector.end(), std::back_inserter(newVector));
+
+    //copy list to vector
+    std::list<std::string> list1;
+    std::vector<std::string> vector1;
+    list1.push_back("test7");
+    list1.push_back("test8");
+    list1.push_back("test9");
+    std::copy(list1.begin(), list1.end(), std::back_inserter(vector1));
+
+    //copy vector to list
+    std::list<std::string> vector2;
+    std::vector<std::string> list2;
+    vector2.push_back("test10");
+    vector2.push_back("test11");
+    vector2.push_back("test12");
+    std::copy(vector2.begin(), vector2.end(), std::back_inserter(list2));
+}

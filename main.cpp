@@ -11,8 +11,7 @@ int main(int argc, char *argv[])
 
 
     TestCases tc;
-    tc.testEmptyString();
-    tc.getDirvers();
+    tc.testDB();
 
     return a.exec();
 }

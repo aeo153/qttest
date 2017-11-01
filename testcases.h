@@ -11,6 +11,8 @@ public:
     void getDirvers();
 
     void testEmptyString();
+
+    void testDB();
 };
 
 #endif // TESTCASES_H

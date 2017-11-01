@@ -4,6 +4,9 @@
 #include <QDebug>
 #include <QDir>
 #include <windows.h>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlDatabase>
+#include <QApplication>
 
 TestCases::TestCases()
 {
@@ -42,9 +45,23 @@ void TestCases::testEmptyString()
     QString txt;
     bool bOk;
     int num = txt.toInt(&bOk);
-    qDebug()<< "empty string to int:"<<bOk;
+    qDebug()<< "empty string to int:"<<bOk<<" value:"<<num;
 
     bOk = true;
     double dbl = txt.toDouble(&bOk);
-    qDebug()<< "empty string to double:"<<bOk;
+    qDebug()<< "empty string to double:"<<bOk<<" value:"<<dbl;
+}
+
+void TestCases::testDB()
+{
+    QSqlDatabase dbConn = QSqlDatabase::addDatabase("QSQLITE");
+    QString appdir = qApp->applicationDirPath();
+    dbConn.setDatabaseName(appdir + "/db/dsyx.db");
+    if ( !dbConn.open() )
+    {
+        qDebug()<<"failed create db";
+    }
+
+    QSqlQuery query(dbConn);
+    query.exec("create table Privilege(PCode int not null, Description varchar(255), primary key (PCode));");
 }
