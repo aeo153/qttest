@@ -13,6 +13,8 @@ public:
     void testEmptyString();
 
     void testDB();
+
+    void testAnimation();
 };
 
 #endif // TESTCASES_H
