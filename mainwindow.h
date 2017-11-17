@@ -17,9 +17,14 @@ public:
 
 public slots:
     void on_pushButton_clicked();
+    void onAnimationBtn();
+
+private:
+    void initUI();
 
 private:
     Ui::MainWindow *ui;
+    class QPropertyAnimation * m_animation;
 };
 
 #endif // MAINWINDOW_H
