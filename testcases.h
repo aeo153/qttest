@@ -13,6 +13,8 @@ public:
     void testEmptyString();
 
     void testDB();
+
+    void testDate();
 };
 
 #endif // TESTCASES_H

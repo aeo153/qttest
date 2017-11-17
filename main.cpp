@@ -6,12 +6,12 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+//    MainWindow w;
+//    w.show();
 
 
-    //TestCases tc;
-    //tc.getDirvers();
+    TestCases tc;
+    tc.testDate();
 
     return a.exec();
 }

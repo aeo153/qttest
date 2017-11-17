@@ -10,6 +10,7 @@
 #include <QParallelAnimationGroup>
 #include <QPropertyAnimation>
 #include <QPushButton>
+#include "ComplieTime.h"
 
 TestCases::TestCases()
 {
@@ -67,4 +68,9 @@ void TestCases::testDB()
 
     QSqlQuery query(dbConn);
     query.exec("create table Privilege(PCode int not null, Description varchar(255), primary key (PCode));");
+}
+
+void TestCases::testDate()
+{
+    qDebug()<<GetExeBuildTime();
 }

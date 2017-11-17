@@ -33,7 +33,8 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     testcases.h \
-    teststd.h
+    teststd.h \
+    ComplieTime.h
 
 FORMS    += mainwindow.ui
 
