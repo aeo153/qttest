@@ -9,6 +9,8 @@ public:
     void testList();
 
     void TestCopy();
+
+    void testStringStream();
 };
 
 #endif // TESTSTD_H

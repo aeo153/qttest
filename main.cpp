@@ -2,6 +2,7 @@
 #include <QApplication>
 
 #include "testcases.h"
+#include "teststd.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,8 +11,11 @@ int main(int argc, char *argv[])
 //    w.show();
 
 
-    TestCases tc;
-    tc.testDate();
+//    TestCases tc;
+//    tc.testDate();
+
+    TestStd stdtest;
+    stdtest.testStringStream();
 
     return a.exec();
 }

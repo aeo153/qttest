@@ -16,7 +16,6 @@ public:
     ~MainWindow();
 
 public slots:
-    void on_pushButton_clicked();
     void onAnimationBtn();
 
 private:

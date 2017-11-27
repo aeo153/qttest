@@ -15,6 +15,8 @@ public:
     void testDB();
 
     void testDate();
+
+    void testProcess();
 };
 
 #endif // TESTCASES_H

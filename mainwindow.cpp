@@ -1,10 +1,9 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
-//#include "libtest.h"
 #include <QMessageBox>
 #include <QParallelAnimationGroup>
-#include <QProcess>
 #include <QPropertyAnimation>
+#include <QPushButton>
 #include <QSequentialAnimationGroup>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -18,16 +17,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-
-void MainWindow::on_pushButton_clicked()
-{
-    //Libtest lt;
-    //int a = lt.Add(10 , 20);
-    //QMessageBox::information(this, tr("libtest"), tr("Add:%1").arg(a));
-
-    //QProcess::startDetached(tr("/home/tands/Program/qt/5.8/gcc_64/bin/assistant"));
 }
 
 void MainWindow::onAnimationBtn()
@@ -82,4 +71,28 @@ void MainWindow::initUI()
     mnBar->addMenu(animationMenu);
 
     m_animation = new QPropertyAnimation(this, "geometry");
+
+    QStringList colText;
+    colText<<"col1";
+    QTreeWidgetItem * pPItem = new QTreeWidgetItem(colText);
+    colText.clear();
+    colText<<"col2";
+    QTreeWidgetItem * pSItem = new QTreeWidgetItem(pPItem, colText);
+    pPItem->addChild(pSItem);
+    ui->treeWidget->addTopLevelItem(pPItem);
+
+    colText.clear();
+    colText<<"col3";
+    QTreeWidgetItem * pPItem2 = new QTreeWidgetItem(colText);
+    colText.clear();
+    colText<<"col4";
+    QTreeWidgetItem * pSItem2 = new QTreeWidgetItem(pPItem2, colText);
+    pPItem2->addChild(pSItem2);
+
+    colText.clear();
+    colText<<"col5";
+    QTreeWidgetItem * pSItem3 = new QTreeWidgetItem(pSItem2, colText);
+    pSItem2->addChild(pSItem3);
+
+    ui->treeWidget->addTopLevelItem(pPItem2);
 }

@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <iterator>
 #include <string>
+#include <sstream>
 using namespace std;
 
 TestStd::TestStd()
@@ -239,4 +240,19 @@ void TestStd::TestCopy()
     vector2.push_back("test11");
     vector2.push_back("test12");
     std::copy(vector2.begin(), vector2.end(), std::back_inserter(list2));
+}
+
+void TestStd::testStringStream()
+{
+    std::stringstream osstr;
+    osstr<<1.0<<" "<<1.0<<" "<<0.5;
+    std::string aStr = osstr.str();
+    std::cout<<aStr<<endl;
+
+    std::stringstream isstr(aStr);
+    float r, g, b;
+    isstr>>r;
+    isstr>>g;
+    isstr>>b;
+    std::cout<<r<<","<<g<<","<<b<<endl;
 }

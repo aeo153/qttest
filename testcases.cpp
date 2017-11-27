@@ -24,14 +24,14 @@ TestCases::~TestCases()
 
 quint64 getDiskFreeSpace(QString driver)
 {
- LPCWSTR lpcwstrDriver=(LPCWSTR)driver.utf16();
- ULARGE_INTEGER liFreeBytesAvailable, liTotalBytes, liTotalFreeBytes;
- if( !GetDiskFreeSpaceEx(lpcwstrDriver, &liFreeBytesAvailable, &liTotalBytes, &liTotalFreeBytes) )
- {
-  qDebug() << "ERROR: Call to GetDiskFreeSpaceEx() failed.";
-  return 0;
- }
- return (quint64) liTotalFreeBytes.QuadPart/1024/1024/1024;
+    LPCWSTR lpcwstrDriver=(LPCWSTR)driver.utf16();
+    ULARGE_INTEGER liFreeBytesAvailable, liTotalBytes, liTotalFreeBytes;
+    if( !GetDiskFreeSpaceEx(lpcwstrDriver, &liFreeBytesAvailable, &liTotalBytes, &liTotalFreeBytes) )
+    {
+        qDebug() << "ERROR: Call to GetDiskFreeSpaceEx() failed.";
+        return 0;
+    }
+    return (quint64) liTotalFreeBytes.QuadPart/1024/1024/1024;
 }
 
 
@@ -72,5 +72,14 @@ void TestCases::testDB()
 
 void TestCases::testDate()
 {
-    qDebug()<<GetExeBuildTime();
+    qDebug()<<GetBuildTime();
+}
+
+void TestCases::testProcess()
+{
+    //Libtest lt;
+    //int a = lt.Add(10 , 20);
+    //QMessageBox::information(this, tr("libtest"), tr("Add:%1").arg(a));
+
+    //QProcess::startDetached(tr("/home/tands/Program/qt/5.8/gcc_64/bin/assistant"));
 }
