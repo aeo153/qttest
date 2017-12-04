@@ -15,11 +15,14 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void testCurvePlot();
+
 public slots:
     void onAnimationBtn();
 
 private:
     void initUI();
+    void testTreeWidget();
 
 private:
     Ui::MainWindow *ui;

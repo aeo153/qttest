@@ -108,8 +108,7 @@ void TestStd::testList()
     scores.push_back(100);
     std::cout<< "capacity:" << scores.capacity()<<" "<<scores.size()<< " " << scores.max_size() <<std::endl;
 
-    int NumberOf100Scores(0);
-    NumberOf100Scores = std::count(scores.begin(), scores.end(), 100);
+    auto NumberOf100Scores = std::count(scores.begin(), scores.end(), 100);
     std::cout << "There were " << NumberOf100Scores << " scores of 100" << std::endl;
     NumberOf100Scores = std::count_if(scores.begin(), scores.end(), eq100);
     std::cout << "There were " << NumberOf100Scores << " scores of 100" << std::endl;

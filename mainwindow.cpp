@@ -1,10 +1,14 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QCheckBox>
 #include <QMessageBox>
 #include <QParallelAnimationGroup>
 #include <QPropertyAnimation>
 #include <QPushButton>
 #include <QSequentialAnimationGroup>
+#include <plot/CurvePlot.h>
+#include <math.h>
+#include <qmath.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -71,28 +75,43 @@ void MainWindow::initUI()
     mnBar->addMenu(animationMenu);
 
     m_animation = new QPropertyAnimation(this, "geometry");
+}
 
-    QStringList colText;
-    colText<<"col1";
-    QTreeWidgetItem * pPItem = new QTreeWidgetItem(colText);
-    colText.clear();
-    colText<<"col2";
-    QTreeWidgetItem * pSItem = new QTreeWidgetItem(pPItem, colText);
-    pPItem->addChild(pSItem);
-    ui->treeWidget->addTopLevelItem(pPItem);
+void MainWindow::testTreeWidget()
+{
+    //    QStringList colText;
+    //    colText<<"col1"<<"";
+    //    QTreeWidgetItem * pPItem = new QTreeWidgetItem(colText);
+    //    ui->treeWidget->setColumnWidth(0, 220);
+    //    ui->treeWidget->setColumnWidth(1, 20);
+    //    ui->treeWidget->addTopLevelItem(pPItem);
+    //    ui->treeWidget->setItemWidget(pPItem, 1, new QCheckBox(ui->treeWidget));
 
-    colText.clear();
-    colText<<"col3";
-    QTreeWidgetItem * pPItem2 = new QTreeWidgetItem(colText);
-    colText.clear();
-    colText<<"col4";
-    QTreeWidgetItem * pSItem2 = new QTreeWidgetItem(pPItem2, colText);
-    pPItem2->addChild(pSItem2);
+    //    colText.clear();
+    //    colText<<"col3";
+    //    QTreeWidgetItem * pPItem2 = new QTreeWidgetItem(colText);
+    //    colText.clear();
+    //    colText<<"col4"<<"col5";
+    //    QTreeWidgetItem * pSItem2 = new QTreeWidgetItem(pPItem2, colText);
+    //    pPItem2->addChild(pSItem2);
 
-    colText.clear();
-    colText<<"col5";
-    QTreeWidgetItem * pSItem3 = new QTreeWidgetItem(pSItem2, colText);
-    pSItem2->addChild(pSItem3);
+    //    ui->treeWidget->addTopLevelItem(pPItem2);
+}
 
-    ui->treeWidget->addTopLevelItem(pPItem2);
+void MainWindow::testCurvePlot()
+{
+    CurvePlotFrm * plot = new CurvePlotFrm(this);
+    setCentralWidget(plot);
+
+    //计算曲线数据
+    std::vector<double> xs;
+    std::vector<double> ys;
+
+    for (double x = 0; x <= 300; x += 0.1)
+    {
+        xs.push_back(x);
+        ys.push_back(50 + 100 * qSin(x));
+    }
+
+    plot->AddCurveData("liver", xs, ys);
 }

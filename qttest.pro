@@ -18,6 +18,7 @@ CONFIG += C++11
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
+DEFINES += QWT_DLL
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -25,17 +26,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 #INCLUDEPATH += /home/tands/prjs/libtest
+INCLUDEPATH += E:/tands/baidunetdisk/prjs/qttest/qwt/src
 
 SOURCES += main.cpp\
         mainwindow.cpp \
     testcases.cpp \
-    teststd.cpp
+    teststd.cpp \
+    plot/CurvePlot.cpp
 
 HEADERS  += mainwindow.h \
     testcases.h \
     teststd.h \
-    ComplieTime.h
+    ComplieTime.h \
+    plot/CurvePlot.h
 
 FORMS    += mainwindow.ui
+
+LIBS += -LE:/tands/baidunetdisk/prjs/qttest/build-qwt-Desktop_Qt_5_7_1_MSVC2015_64bit-Debug/lib
+
+CONFIG(debug, debug|release) {
+    LIBS += -lqwtd
+}
+else {
+    LIBS += -lqwt
+}
 
 #LIBS += -L/home/tands/prjs/build-libtest-Desktop-Debug -llibtest
