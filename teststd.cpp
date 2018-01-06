@@ -205,6 +205,20 @@ void TestStd::testList()
     intUserMap.insert(std::map<int, UserInfo>::value_type(5, UserInfo(5, "Lucy")));
 }
 
+void TestStd::testVector()
+{
+    std::vector<int> scores;
+    std::cout<< "capacity:" << scores.capacity()<<std::endl;
+
+    scores.resize(6);
+    std::cout<< "capacity:" << scores.capacity()<<endl;
+
+    scores[0] = 100;
+    scores[1] = 80;
+    scores[2] = 45;
+    std::cout<< "capacity:" << scores.capacity()<<" "<<scores.size()<< " " << scores.max_size() <<std::endl;
+}
+
 void TestStd::TestCopy()
 {
     //copy list to list
@@ -254,4 +268,39 @@ void TestStd::testStringStream()
     isstr>>g;
     isstr>>b;
     std::cout<<r<<","<<g<<","<<b<<endl;
+}
+
+template<class T>
+void getTypeName(const T & val)
+{
+    std::cout<<val<<typeid(T).name()<< " typecomp:"<<(typeid(T).hash_code() == typeid(int).hash_code())<<endl;
+}
+
+void TestStd::testTypeId()
+{
+    int i = 0;
+    getTypeName<int>(i);//int typecomp:1
+
+    bool b = false;
+    getTypeName<bool>(b);//bool typecomp:0
+}
+
+void TestStd::testTuple()
+{
+    std::tuple<std::string, int, float, double> tp1 = std::make_tuple(std::string("tupletest"), 1, 2.0f, 3.0);
+    std::cout<<std::get<0>(tp1)<<" "<<std::get<1>(tp1)<<" "<<std::get<2>(tp1)<<" "<<std::get<3>(tp1)<<endl;
+
+    int a = 4, b = 5, c = 6;
+    auto tp2 = std::tie(a, b, c);//creates a tuple of lvalue references,元素必须是变量,std::tie(3,4,5)会编译出错
+
+    int d, e, g;
+    std::tie(d, e, g) = tp2;//unpacks a tuple into individual objects
+    std::cout<<"d="<<d<<" e="<<e<<" g="<<g<<endl;
+
+    auto tp3 = std::tuple_cat(tp1, tp2, std::make_pair(7, 8));
+    std::cout<< std::tuple_size<decltype(tp2)>::value <<endl;
+    std::cout<<typeid(decltype(std::tuple_size<decltype(tp3)>::value)).name()<<endl;//unsigned __int64
+
+    const int i = 4;
+    std::cout<<std::get<i>(tp3)<<endl;//std::get<i>(tp3),i必须是常量
 }

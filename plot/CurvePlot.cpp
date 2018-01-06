@@ -5,6 +5,7 @@
 #include <qwt/src/qwt_legend.h>
 #include <qwt/src/qwt_plot_magnifier.h>
 #include <qwt/src/qwt_plot_panner.h>
+#include <qwt/src/qwt_plot_textlabel.h>
 
 CurvePlotFrm::CurvePlotFrm(QWidget *parent)
     :QwtPlot(parent)
@@ -56,6 +57,17 @@ void CurvePlotFrm::InitCanvas()
 
     //使用鼠标左键平移
     m_panner = new QwtPlotPanner(canvas());
+
+//    QwtText title( "Plot Text" );
+//    title.setRenderFlags( Qt::AlignRight | Qt::AlignBottom );
+
+//    QFont font;
+//    font.setBold( true );
+//    title.setFont( font );
+
+//    QwtPlotTextLabel *titleItem = new QwtPlotTextLabel();
+//    titleItem->setText( title );
+//    titleItem->attach( this );
 }
 
 void CurvePlotFrm::AddCurveData(const QString & curveName,
