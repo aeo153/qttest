@@ -289,18 +289,25 @@ void TestStd::testTuple()
 {
     std::tuple<std::string, int, float, double> tp1 = std::make_tuple(std::string("tupletest"), 1, 2.0f, 3.0);
     std::cout<<std::get<0>(tp1)<<" "<<std::get<1>(tp1)<<" "<<std::get<2>(tp1)<<" "<<std::get<3>(tp1)<<endl;
+    //tupletest 1 2 3
 
     int a = 4, b = 5, c = 6;
     auto tp2 = std::tie(a, b, c);//creates a tuple of lvalue references,元素必须是变量,std::tie(3,4,5)会编译出错
 
     int d, e, g;
     std::tie(d, e, g) = tp2;//unpacks a tuple into individual objects
+
     std::cout<<"d="<<d<<" e="<<e<<" g="<<g<<endl;
+    //d=4 e=5 g=6
 
     auto tp3 = std::tuple_cat(tp1, tp2, std::make_pair(7, 8));
-    std::cout<< std::tuple_size<decltype(tp2)>::value <<endl;
-    std::cout<<typeid(decltype(std::tuple_size<decltype(tp3)>::value)).name()<<endl;//unsigned __int64
+    std::cout<< std::tuple_size<decltype(tp3)>::value <<endl;
+    //9
+
+    std::cout<<typeid(decltype(std::tuple_size<decltype(tp3)>::value)).name()<<endl;
+    //unsigned __int64
 
     const int i = 4;
     std::cout<<std::get<i>(tp3)<<endl;//std::get<i>(tp3),i必须是常量
+    //4
 }
