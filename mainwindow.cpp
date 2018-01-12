@@ -1,4 +1,5 @@
-﻿#include "mainwindow.h"
+﻿#include "ArrayPtr.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QCheckBox>
 #include <QMessageBox>
@@ -7,6 +8,8 @@
 #include <QPushButton>
 #include <QSequentialAnimationGroup>
 #include <plot/CurvePlot.h>
+#include <QLabel>
+#include <QVBoxLayout>
 #include <math.h>
 #include <qmath.h>
 
@@ -75,6 +78,21 @@ void MainWindow::initUI()
     mnBar->addMenu(animationMenu);
 
     m_animation = new QPropertyAnimation(this, "geometry");
+
+    QMenu * uiTestMenu = new QMenu("UITest", this);
+
+    pAct = new QAction("TwoPlace", uiTestMenu);
+    connect(pAct, &QAction::triggered, this, &MainWindow::onTestTwoPlaceWdt);
+    uiTestMenu->addAction(pAct);
+    mnBar->addMenu(uiTestMenu);
+
+
+    QMenu * algTestMenu = new QMenu("AlgTest", this);
+
+    pAct = new QAction("ArrayPtr", algTestMenu);
+    connect(pAct, &QAction::triggered, this, &MainWindow::onTestArrayPtr);
+    algTestMenu->addAction(pAct);
+    mnBar->addMenu(algTestMenu);
 }
 
 void MainWindow::testTreeWidget()
@@ -114,4 +132,35 @@ void MainWindow::testCurvePlot()
     }
 
     plot->AddCurveData("liver", xs, ys);
+}
+
+void MainWindow::onTestTwoPlaceWdt()
+{
+    m_twoPlaceLbl = new QLabel(this);
+    m_twoPlaceLbl->setText("test two place widget");
+    setCentralWidget(m_twoPlaceLbl);
+
+    QDialog dlg(this);
+    QVBoxLayout * dlgLyt = new QVBoxLayout(&dlg);
+    dlgLyt->addWidget(m_twoPlaceLbl);
+    dlg.resize(400, 500);
+    dlg.exec();
+}
+
+void MainWindow::onTestArrayPtr()
+{
+    int num = 1e6;
+    int * pArr = new int[num];
+    ArrayPtr<int> arrPtr(pArr);
+//    ArrayPtr<int> arrPtr(num);
+//    auto pArr = arrPtr.GetPointer();
+    for ( int i = 0; i < num; i++ )
+    {
+        pArr[i] = i;
+    }
+
+    for ( int i = 0; i < num; i++ )
+    {
+        qDebug()<<__func__<<" "<<pArr[i];
+    }
 }

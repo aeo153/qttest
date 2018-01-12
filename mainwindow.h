@@ -19,6 +19,9 @@ public:
 
 public slots:
     void onAnimationBtn();
+    void onTestTwoPlaceWdt();
+    void onTestArrayPtr();
+
 
 private:
     void initUI();
@@ -27,6 +30,8 @@ private:
 private:
     Ui::MainWindow *ui;
     class QPropertyAnimation * m_animation;
+
+    class QLabel * m_twoPlaceLbl = nullptr;
 };
 
 #endif // MAINWINDOW_H

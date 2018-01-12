@@ -12,6 +12,8 @@
 #include <iterator>
 #include <string>
 #include <sstream>
+#include <fstream>
+
 using namespace std;
 
 TestStd::TestStd()
@@ -310,4 +312,21 @@ void TestStd::testTuple()
     const int i = 4;
     std::cout<<std::get<i>(tp3)<<endl;//std::get<i>(tp3),i必须是常量
     //4
+}
+
+void TestStd::checkFileExists()
+{
+    std::string fontPath = "C:/Windows/Fonts/msyh.ttc";
+    std::ifstream ifstrm1(fontPath);
+    if (!ifstrm1)
+    {
+        std::cout<<fontPath<<" not exists."<<std::endl;
+    }
+
+    fontPath = "C:/Windows/Fonts/msyh.ttf";
+    std::ifstream ifstrm2(fontPath);
+    if (!ifstrm2)
+    {
+        std::cout<<fontPath<<" not exists."<<std::endl;
+    }
 }

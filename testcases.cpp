@@ -11,6 +11,8 @@
 #include <QPropertyAnimation>
 #include <QPushButton>
 #include "ComplieTime.h"
+#include "ArrayPtr.h"
+#include <iostream>
 
 TestCases::TestCases()
 {
@@ -82,4 +84,20 @@ void TestCases::testProcess()
     //QMessageBox::information(this, tr("libtest"), tr("Add:%1").arg(a));
 
     //QProcess::startDetached(tr("/home/tands/Program/qt/5.8/gcc_64/bin/assistant"));
+}
+
+void TestCases::testArrayPtr()
+{
+    int num = 1e6;
+    int * pArr = new int[num];
+    ArrayPtr<int> arrPtr(pArr);
+    for ( int i = 0; i < num; i++ )
+    {
+        pArr[i] = i;
+    }
+
+    for ( int i = 0; i < num; i++ )
+    {
+        qDebug()<<__func__<<" "<<pArr[i];
+    }
 }

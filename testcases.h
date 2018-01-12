@@ -17,6 +17,8 @@ public:
     void testDate();
 
     void testProcess();
+
+    void testArrayPtr();
 };
 
 #endif // TESTCASES_H

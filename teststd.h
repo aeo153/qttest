@@ -17,6 +17,8 @@ public:
     void testTypeId();
 
     void testTuple();
+
+    void checkFileExists();
 };
 
 #endif // TESTSTD_H
