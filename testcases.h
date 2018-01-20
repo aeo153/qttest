@@ -19,6 +19,8 @@ public:
     void testProcess();
 
     void testArrayPtr();
+
+    auto getValue() { return 1.4; }
 };
 
 #endif // TESTCASES_H

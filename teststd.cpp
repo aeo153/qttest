@@ -13,6 +13,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <QDebug>
 
 using namespace std;
 
@@ -20,8 +21,6 @@ TestStd::TestStd()
 {
 
 }
-
-
 
 inline bool eq100(int value)
 {
@@ -328,5 +327,16 @@ void TestStd::checkFileExists()
     if (!ifstrm2)
     {
         std::cout<<fontPath<<" not exists."<<std::endl;
+    }
+}
+
+void TestStd::testMemory()
+{
+    int num = 100;
+    unsigned char * unchar = new unsigned char[num];
+    memset(unchar, 5, sizeof(unsigned char) * num);
+    for (int i = 0; i < num; i++)
+    {
+        qDebug()<<unchar[i];
     }
 }

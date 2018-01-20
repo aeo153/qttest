@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <QSequentialAnimationGroup>
 #include <plot/CurvePlot.h>
+#include <QGroupBox>
 #include <QLabel>
 #include <QVBoxLayout>
 #include <math.h>
@@ -86,6 +87,10 @@ void MainWindow::initUI()
     uiTestMenu->addAction(pAct);
     mnBar->addMenu(uiTestMenu);
 
+    pAct = new QAction("ChildObject", uiTestMenu);
+    connect(pAct, &QAction::triggered, this, &MainWindow::onTestChildObject);
+    uiTestMenu->addAction(pAct);
+    mnBar->addMenu(uiTestMenu);
 
     QMenu * algTestMenu = new QMenu("AlgTest", this);
 
@@ -147,6 +152,32 @@ void MainWindow::onTestTwoPlaceWdt()
     dlg.exec();
 }
 
+void MainWindow::onTestChildObject()
+{
+    QGroupBox * grpBox = new QGroupBox(this);
+    QHBoxLayout * hLyt = new QHBoxLayout(grpBox);
+    QLabel * pLbl1 = new QLabel("lbl1", grpBox);
+    hLyt->addWidget(pLbl1);
+
+    QLabel * pLbl2 = new QLabel("lbl2", grpBox);
+    hLyt->addWidget(pLbl2);
+
+    QLabel * pLbl3 = new QLabel("lbl3", grpBox);
+    hLyt->addWidget(pLbl3);
+
+    connect(pLbl1, &QObject::destroyed, this, &MainWindow::onObjectDestroyed);
+    connect(pLbl2, &QObject::destroyed, this, &MainWindow::onObjectDestroyed);
+    connect(pLbl3, &QObject::destroyed, this, &MainWindow::onObjectDestroyed);
+    connect(grpBox, &QObject::destroyed, this, &MainWindow::onObjectDestroyed);
+    setCentralWidget(grpBox);
+
+    //pLbl1->setParent(nullptr);
+    //pLbl2->setParent(nullptr);
+    //pLbl3->setParent(nullptr);
+    //delete grpBox;//pLbl1,pLbl2不会销毁, pLbl3,grpBox会销毁
+    //delete hLyt;//单删除layout,widget不会被删除
+}
+
 void MainWindow::onTestArrayPtr()
 {
     int num = 1e6;
@@ -163,4 +194,10 @@ void MainWindow::onTestArrayPtr()
     {
         qDebug()<<__func__<<" "<<pArr[i];
     }
+}
+
+void MainWindow::onObjectDestroyed()
+{
+    QObject * pObj = sender();
+    qDebug()<<__func__<< pObj->metaObject()->className();
 }

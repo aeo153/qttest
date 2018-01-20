@@ -20,7 +20,11 @@ public:
 public slots:
     void onAnimationBtn();
     void onTestTwoPlaceWdt();
+    void onTestChildObject();
     void onTestArrayPtr();
+
+protected slots:
+    void onObjectDestroyed();
 
 
 private:
