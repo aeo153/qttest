@@ -132,6 +132,7 @@ void MainWindow::testTreeWidget()
 void MainWindow::onAddResult(int result)
 {
     qDebug()<<__func__<<":"<<result;
+    delete m_addTest;
 }
 
 void MainWindow::testCurvePlot()
@@ -211,10 +212,10 @@ void MainWindow::onTestArrayPtr()
 
 void MainWindow::onTestThread()
 {
-    ThreadTest * thrdTest = new ThreadTest;
+    m_addTest = new ThreadTest;
     std::function<void (int)> fun = std::bind(&MainWindow::onAddResult, this, std::placeholders::_1);
-    thrdTest->SetResultFun(fun);
-    thrdTest->Add(100, 200);
+    m_addTest->SetResultFun(fun);
+    m_addTest->Add(100, 200);
 }
 
 void MainWindow::onObjectDestroyed()

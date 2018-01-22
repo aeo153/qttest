@@ -38,6 +38,7 @@ private:
     class QPropertyAnimation * m_animation;
 
     class QLabel * m_twoPlaceLbl = nullptr;
+    class ThreadTest * m_addTest = nullptr;
 };
 
 #endif // MAINWINDOW_H
