@@ -1,5 +1,6 @@
 ﻿#include "ArrayPtr.h"
 #include "mainwindow.h"
+#include "threadtest.h"
 #include "ui_mainwindow.h"
 #include <QCheckBox>
 #include <QMessageBox>
@@ -71,33 +72,40 @@ void MainWindow::onAnimationBtn()
 void MainWindow::initUI()
 {
     QMenuBar * mnBar = menuBar();
+
+    /************************Animation*******************/
     QMenu * animationMenu = new QMenu("Animation", this);
+    mnBar->addMenu(animationMenu);
 
     QAction * pAct = new QAction("Button", animationMenu);
     connect(pAct, &QAction::triggered, this, &MainWindow::onAnimationBtn);
-    animationMenu->addAction(pAct);
-    mnBar->addMenu(animationMenu);
+    animationMenu->addAction(pAct);    
 
     m_animation = new QPropertyAnimation(this, "geometry");
 
+    /************************UITest*******************/
     QMenu * uiTestMenu = new QMenu("UITest", this);
+    mnBar->addMenu(uiTestMenu);
 
     pAct = new QAction("TwoPlace", uiTestMenu);
     connect(pAct, &QAction::triggered, this, &MainWindow::onTestTwoPlaceWdt);
-    uiTestMenu->addAction(pAct);
-    mnBar->addMenu(uiTestMenu);
+    uiTestMenu->addAction(pAct);    
 
     pAct = new QAction("ChildObject", uiTestMenu);
     connect(pAct, &QAction::triggered, this, &MainWindow::onTestChildObject);
     uiTestMenu->addAction(pAct);
-    mnBar->addMenu(uiTestMenu);
 
+    /************************AlgTest*******************/
     QMenu * algTestMenu = new QMenu("AlgTest", this);
+    mnBar->addMenu(algTestMenu);
 
     pAct = new QAction("ArrayPtr", algTestMenu);
     connect(pAct, &QAction::triggered, this, &MainWindow::onTestArrayPtr);
     algTestMenu->addAction(pAct);
-    mnBar->addMenu(algTestMenu);
+
+    pAct = new QAction("Thread", algTestMenu);
+    connect(pAct, &QAction::triggered, this, &MainWindow::onTestThread);
+    algTestMenu->addAction(pAct);
 }
 
 void MainWindow::testTreeWidget()
@@ -119,6 +127,11 @@ void MainWindow::testTreeWidget()
     //    pPItem2->addChild(pSItem2);
 
     //    ui->treeWidget->addTopLevelItem(pPItem2);
+}
+
+void MainWindow::onAddResult(int result)
+{
+    qDebug()<<__func__<<":"<<result;
 }
 
 void MainWindow::testCurvePlot()
@@ -194,6 +207,14 @@ void MainWindow::onTestArrayPtr()
     {
         qDebug()<<__func__<<" "<<pArr[i];
     }
+}
+
+void MainWindow::onTestThread()
+{
+    ThreadTest * thrdTest = new ThreadTest;
+    std::function<void (int)> fun = std::bind(&MainWindow::onAddResult, this, std::placeholders::_1);
+    thrdTest->SetResultFun(fun);
+    thrdTest->Add(100, 200);
 }
 
 void MainWindow::onObjectDestroyed()

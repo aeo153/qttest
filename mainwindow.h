@@ -22,6 +22,7 @@ public slots:
     void onTestTwoPlaceWdt();
     void onTestChildObject();
     void onTestArrayPtr();
+    void onTestThread();
 
 protected slots:
     void onObjectDestroyed();
@@ -30,6 +31,7 @@ protected slots:
 private:
     void initUI();
     void testTreeWidget();
+    void onAddResult(int result);
 
 private:
     Ui::MainWindow *ui;
