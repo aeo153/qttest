@@ -14,6 +14,7 @@
 #include <QVBoxLayout>
 #include <math.h>
 #include <qmath.h>
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -132,7 +133,8 @@ void MainWindow::testTreeWidget()
 void MainWindow::onAddResult(int result)
 {
     qDebug()<<__func__<<":"<<result;
-    delete m_addTest;
+    std::cout<<__func__<<std::this_thread::get_id();
+    //delete m_addTest;
 }
 
 void MainWindow::testCurvePlot()
@@ -212,6 +214,7 @@ void MainWindow::onTestArrayPtr()
 
 void MainWindow::onTestThread()
 {
+    std::cout<<__func__<<std::this_thread::get_id();
     m_addTest = new ThreadTest;
     std::function<void (int)> fun = std::bind(&MainWindow::onAddResult, this, std::placeholders::_1);
     m_addTest->SetResultFun(fun);
