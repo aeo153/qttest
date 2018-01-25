@@ -226,3 +226,9 @@ void MainWindow::onObjectDestroyed()
     QObject * pObj = sender();
     qDebug()<<__func__<< pObj->metaObject()->className();
 }
+
+void MainWindow::onStdFuntion()
+{
+}
+
+

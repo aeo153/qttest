@@ -35,7 +35,9 @@ SOURCES += main.cpp\
     plot/CurvePlot.cpp \
     templatetest.cpp \
     boosttest.cpp \
-    threadtest.cpp
+    threadtest.cpp \
+    ClassA.cpp \
+    CodeSegment.cpp
 
 HEADERS  += mainwindow.h \
     testcases.h \
@@ -45,7 +47,9 @@ HEADERS  += mainwindow.h \
     templatetest.h \
     ArrayPtr.h \
     boosttest.h \
-    threadtest.h
+    threadtest.h \
+    ClassA.h \
+    CodeSegment.h
 
 FORMS    += mainwindow.ui
 

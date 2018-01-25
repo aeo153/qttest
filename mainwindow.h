@@ -27,6 +27,9 @@ public slots:
 protected slots:
     void onObjectDestroyed();
 
+    //C++测试
+    void onStdFuntion();
+
 
 private:
     void initUI();

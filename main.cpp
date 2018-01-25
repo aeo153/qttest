@@ -11,14 +11,14 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+//    MainWindow w;
+//    w.show();
 
 //    TestCases tc;
 //    tc.testArrayPtr();
 
-//    TestStd stdtest;
-//    stdtest.testMemory();
+    TestStd stdtest;
+    stdtest.testTypeId();
 
 //    TestTemplate<int> tmplTest;
 //    tmplTest.print(2, 3);

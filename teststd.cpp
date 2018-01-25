@@ -1,6 +1,5 @@
 ﻿#include "teststd.h"
 #include <list>
-#include <vector>
 #include <set>
 #include <map>
 #include <algorithm>
@@ -14,6 +13,7 @@
 #include <sstream>
 #include <fstream>
 #include <QDebug>
+#include "ClassA.h"
 
 using namespace std;
 
@@ -274,16 +274,19 @@ void TestStd::testStringStream()
 template<class T>
 void getTypeName(const T & val)
 {
-    std::cout<<val<<typeid(T).name()<< " typecomp:"<<(typeid(T).hash_code() == typeid(int).hash_code())<<endl;
+    std::cout<<val<<","<<typeid(T).name()<< ",type compare:"<<(typeid(T).hash_code() == typeid(int).hash_code())<<std::endl;
 }
 
 void TestStd::testTypeId()
 {
     int i = 0;
-    getTypeName<int>(i);//int typecomp:1
+    getTypeName<int>(i);//int type compare:1
 
     bool b = false;
-    getTypeName<bool>(b);//bool typecomp:0
+    getTypeName<bool>(b);//bool type compare:0
+
+    E_ColorType clrType = e_red;
+    getTypeName<E_ColorType>(clrType);
 }
 
 void TestStd::testTuple()
@@ -338,5 +341,54 @@ void TestStd::testMemory()
     for (int i = 0; i < num; i++)
     {
         qDebug()<<unchar[i];
+    }
+}
+
+std::vector<std::function< float(const float &, const float &) > > funs;
+float add(const float & a, const float & b) { return a + b; }
+
+void TestStd::createfun()
+{
+    //普通函数
+    std::function<float(const float &, const float &)> f_fun = add;
+
+    //bind 普通函数（固定参数）
+    auto f_bind_fun = std::bind(add, 1, 1);
+
+    //bind 普通函数（传入参数）
+    auto f_bind_placeholders = std::bind(add, std::placeholders::_1, std::placeholders::_2);
+
+    //bind 对象函数
+    ClassA ca;
+    auto f_bind_class_obj = std::bind(&ClassA::add, ca, std::placeholders::_1, std::placeholders::_2);
+
+    //bind 对象指针函数
+    auto f_bind_class_ptr = std::bind(&ClassA::add, &ca, std::placeholders::_1, std::placeholders::_2);
+
+    //仿函数
+    Functor fun_obj;
+    auto f_functor = fun_obj;
+
+    //匿名函数(lambda函数)
+    float d = 1000;
+    auto f_lambda = [&d](const float &a , const float &b)->float { return d + b; };
+
+    funs.push_back(f_fun);
+    funs.push_back(f_bind_fun);
+    funs.push_back(f_bind_placeholders);
+    funs.push_back(f_bind_class_obj);
+    funs.push_back(f_bind_class_ptr);
+    funs.push_back(f_functor);
+    funs.push_back(f_lambda);
+}
+
+void TestStd::execFun(const std::vector<std::function<float (const float &, const float &)> > funs)
+{
+    int i = 10;
+    for ( const auto & aFun : funs )
+    {
+        float c = aFun(0, i);
+        qDebug()<<QString("0+%1=%2").arg(QString::number(i), QString::number(c));
+        i++;
     }
 }
