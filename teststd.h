@@ -35,6 +35,8 @@ public:
 
     void testMemory();
 
+    void testErase();
+
     void createfun();
     void execFun(const std::vector<std::function< float (const float &, const float &)> > funs);
 };

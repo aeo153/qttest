@@ -245,6 +245,8 @@ void TestStd::TestCopy()
     list1.push_back("test7");
     list1.push_back("test8");
     list1.push_back("test9");
+
+    vector1.push_back("vector1");
     std::copy(list1.begin(), list1.end(), std::back_inserter(vector1));
 
     //copy vector to list
@@ -342,6 +344,24 @@ void TestStd::testMemory()
     {
         qDebug()<<unchar[i];
     }
+}
+
+void TestStd::testErase()
+{
+    std::list<int> iList;
+    iList.push_back(3);
+    iList.push_back(4);
+    iList.push_back(3);
+    iList.push_back(2);
+    iList.push_back(1);
+    iList.push_back(4);
+    iList.push_back(2);
+
+    iList.erase(std::remove(iList.begin(), iList.end(), 3), iList.end());
+    for_each(iList.begin(), iList.end(), printItem);
+    std::cout<<__func__<<std::endl;
+    iList.erase(std::remove_if(iList.begin(), iList.end(), [&](int val)->bool{return val == 2;}), iList.end());
+    for_each(iList.begin(), iList.end(), printItem);
 }
 
 std::vector<std::function< float(const float &, const float &) > > funs;
