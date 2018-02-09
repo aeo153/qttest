@@ -5,17 +5,17 @@
 #include <QTextStream>
 #include <QTextCodec>
 
-QTTest::QTTest()
+QtTest::QtTest()
 {
 
 }
 
-QTTest::~QTTest()
+QtTest::~QtTest()
 {
 
 }
 
-void QTTest::WriteXML()
+void QtTest::WriteXML()
 {
     QString filePath = QCoreApplication::applicationDirPath();
     filePath += "/xmltest.xml";

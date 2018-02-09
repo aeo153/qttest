@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     //TestStd stdtest;
     //stdtest.createfun();
 
-    QTTest qtTst;
+    QtTest qtTst;
     qtTst.WriteXML();
 
 //    TestTemplate<int> tmplTest;
