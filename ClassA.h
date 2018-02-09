@@ -13,6 +13,8 @@ public:
     ClassA();
 
     float add(const float & a, const float & b) { return a + b; }
+
+    void printSelf();
 };
 
 #endif // CLASSA_H

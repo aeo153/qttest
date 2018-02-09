@@ -10,15 +10,15 @@
 
 int main(int argc, char *argv[])
 {
-    //QApplication a(argc, argv);
+//    QApplication a(argc, argv);
 //    MainWindow w;
 //    w.show();
 
-//    TestCases tc;
-//    tc.testArrayPtr();
+    TestCases tc;
+    tc.testInitStruct();
 
-    TestStd stdtest;
-    stdtest.testErase();
+    //TestStd stdtest;
+    //stdtest.createfun();
 
 //    TestTemplate<int> tmplTest;
 //    tmplTest.print(2, 3);
@@ -26,6 +26,6 @@ int main(int argc, char *argv[])
 //    TemplateFun::TmplFun<int>(3, 6);
 
 
-    //return a.exec();
+//    return a.exec();
     return 0;
 }

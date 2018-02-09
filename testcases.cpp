@@ -101,3 +101,21 @@ void TestCases::testArrayPtr()
         qDebug()<<__func__<<" "<<pArr[i];
     }
 }
+
+void TestCases::testInitStruct()
+{
+    STest s1{1, 2.0f, "s1"};
+    STest s2{2, 3.0f, "s2"};
+    STest s3{3, 4.0f, "s3"};
+    s3 = {3, 5.0f, "s4"};
+    auto printSTest = [&](const STest & tst)
+    {
+        std::cout<<tst.a<<","<<tst.b<<","<<tst.c<<std::endl;
+    };
+
+    printSTest(s1);
+    printSTest(s2);
+    printSTest(s3);
+
+    //std::cout<<__func__<<sizeof(std::string)<<" "<<sizeof(float)<<std::endl;
+}

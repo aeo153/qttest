@@ -39,6 +39,10 @@ public:
 
     void createfun();
     void execFun(const std::vector<std::function< float (const float &, const float &)> > funs);
+
+    void testNumericLimits();
+
+    void timeClock();
 };
 
 #endif // TESTSTD_H

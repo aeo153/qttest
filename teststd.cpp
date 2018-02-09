@@ -14,6 +14,7 @@
 #include <fstream>
 #include <QDebug>
 #include "ClassA.h"
+#include <chrono>
 
 using namespace std;
 
@@ -365,6 +366,7 @@ void TestStd::testErase()
 }
 
 std::vector<std::function< float(const float &, const float &) > > funs;
+std::vector<std::function< void(void) > > voidFuns;
 float add(const float & a, const float & b) { return a + b; }
 
 void TestStd::createfun()
@@ -391,7 +393,7 @@ void TestStd::createfun()
 
     //匿名函数(lambda函数)
     float d = 1000;
-    auto f_lambda = [&d](const float &a , const float &b)->float { return d + b; };
+    auto f_lambda = [&d](const float &/*a*/ , const float &b)->float { return d + b; };
 
     funs.push_back(f_fun);
     funs.push_back(f_bind_fun);
@@ -400,6 +402,11 @@ void TestStd::createfun()
     funs.push_back(f_bind_class_ptr);
     funs.push_back(f_functor);
     funs.push_back(f_lambda);
+
+    ClassA * pac = new ClassA;
+    auto f_void = std::bind(&ClassA::printSelf, pac);
+    voidFuns.push_back(f_void);
+    f_void();
 }
 
 void TestStd::execFun(const std::vector<std::function<float (const float &, const float &)> > funs)
@@ -411,4 +418,47 @@ void TestStd::execFun(const std::vector<std::function<float (const float &, cons
         qDebug()<<QString("0+%1=%2").arg(QString::number(i), QString::number(c));
         i++;
     }
+}
+
+void TestStd::testNumericLimits()
+{
+    std::cout<<"int min:"<<std::numeric_limits<int>::min()<<std::endl;//int min:-2147483648
+    std::cout<<"int max:"<<std::numeric_limits<int>::max()<<std::endl;//int max:2147483647
+    std::cout<<"int infinity:"<<std::numeric_limits<int>::infinity()<<std::endl;//int infinity:0
+
+    std::cout<<"uint min:"<<std::numeric_limits<unsigned int>::min()<<std::endl;//uint min:0
+    std::cout<<"uint max:"<<std::numeric_limits<unsigned int>::max()<<std::endl;//uint max:4294967295
+
+    std::cout<<"double min:"<<std::numeric_limits<double>::min()<<std::endl;//double min:2.22507e-308
+    std::cout<<"double max:"<<std::numeric_limits<double>::max()<<std::endl;//double max:1.79769e+308
+    std::cout<<"double infinity:"<<std::numeric_limits<double>::infinity()<<std::endl;//double infinity:inf
+
+    std::cout<<"float min:"<<std::numeric_limits<float>::min()<<std::endl;//float min:1.17549e-38
+    std::cout<<"float max:"<<std::numeric_limits<float>::max()<<std::endl;//float max:3.40282e+38
+    std::cout<<"float infinity:"<<std::numeric_limits<float>::infinity()<<std::endl;//float infinity:inf
+
+    double maxDbl = std::numeric_limits<float>::max();
+    if ( maxDbl >= std::numeric_limits<float>::max() )
+    {
+        std::cout<<"compare double max"<<std::endl;
+    }
+
+    std::cout<<"int min by macro:"<<INT_MIN<<std::endl;
+    std::cout<<"int max by macro:"<<INT_MAX<<std::endl;
+}
+
+void TestStd::timeClock()
+{
+    std::chrono::system_clock::time_point begin_time = std::chrono::system_clock::now();
+
+    for ( int i = 0; i < 1e5; i++ )
+    {
+        std::cout<<__func__<<" "<<i<<std::endl;
+    }
+
+    std::chrono::system_clock::time_point end_time = std::chrono::system_clock::now();
+
+    std::cout<<__func__<<" spend time:"<<std::chrono::duration_cast<std::chrono::milliseconds>(end_time- begin_time).count()<<std::endl;
+
+    std::cout<<__func__<<" time_t:"<<std::chrono::system_clock::to_time_t(begin_time)<<std::endl;
 }
