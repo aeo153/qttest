@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -37,7 +37,8 @@ SOURCES += main.cpp\
     boosttest.cpp \
     threadtest.cpp \
     ClassA.cpp \
-    CodeSegment.cpp
+    CodeSegment.cpp \
+    qttest.cpp
 
 HEADERS  += mainwindow.h \
     testcases.h \
@@ -49,7 +50,8 @@ HEADERS  += mainwindow.h \
     boosttest.h \
     threadtest.h \
     ClassA.h \
-    CodeSegment.h
+    CodeSegment.h \
+    qttest.h
 
 FORMS    += mainwindow.ui
 
