@@ -1,8 +1,20 @@
 ﻿#include "CodeSegment.h"
+#include <memory.h>
+#include <iostream>
 
 CodeSegment::CodeSegment()
 {
 
+}
+
+void CodeSegment::testMem()
+{
+    int arr[10] = {1, 2, 3,4,5,6,7,8,9,10 };
+    memset(arr, 1, sizeof(arr));
+    for ( auto d : arr )
+    {
+        std::cout<<__func__<<" "<< d<<std::endl;
+    }
 }
 
 

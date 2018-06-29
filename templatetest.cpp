@@ -15,7 +15,7 @@ void TestTemplate<T>::print(T x,T y)
 }
 
 template<class T>
-void TemplateFun::TmplFun(TemplateFun::T x, TemplateFun::T y)
+void TemplateFun::TmplFun(T x, T y)
 {
     auto val = x + y;
     std::cout<<__func__<<" "<<val<<std::endl;

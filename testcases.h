@@ -27,7 +27,7 @@ public:
 
     void testArrayPtr();
 
-    auto getValue() { return 1.4; }
+    //auto getValue() { return 1.4; }
 
     void testInitStruct();
 };

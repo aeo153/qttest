@@ -55,7 +55,7 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-LIBS += -LE:/tands/baidunetdisk/prjs/qttest/build-qwt-Desktop_Qt_5_7_1_MSVC2015_64bit-Debug/lib
+LIBS += -LE:/tands/github/qttest/build-qwt-Desktop_Qt_5_8_0_MinGW_32bit-Debug/lib
 
 CONFIG(debug, debug|release) {
     LIBS += -lqwtd
