@@ -6,6 +6,7 @@
 #include "templatetest.cpp"
 #include "qttest.h"
 #include <iostream>
+#include "CodeSegment.h"
 
 int main(int argc, char *argv[])
 {
@@ -27,7 +28,9 @@ int main(int argc, char *argv[])
 
 //    TemplateFun::TmplFun<int>(3, 6);
 
+    CodeSegment::testMem();
 
-    return a.exec();
-//    return 0;
+
+    //return a.exec();
+    return 0;
 }

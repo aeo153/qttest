@@ -58,9 +58,11 @@ FORMS    += mainwindow.ui
 LIBS += -L$$PWD/lib/mingw
 
 CONFIG(debug, debug|release) {
+    #LIBS += -lqwtd
     LIBS += -llibqwtd
 }
 else {
+    #LIBS += -lqwt
     LIBS += -llibqwt
 }
 

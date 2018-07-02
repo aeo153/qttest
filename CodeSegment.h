@@ -6,6 +6,7 @@ class CodeSegment
 {
 public:
     CodeSegment();
+    static void testMem();
 };
 
 #endif // CODESEGMENT_H
