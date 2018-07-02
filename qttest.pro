@@ -26,7 +26,7 @@ DEFINES += QWT_DLL
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 #INCLUDEPATH += /home/tands/prjs/libtest
-INCLUDEPATH += E:/tands/baidunetdisk/prjs/qttest/qwt/src
+INCLUDEPATH += $$PWD/qwt/src
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -55,13 +55,13 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-LIBS += -LE:/tands/baidunetdisk/prjs/qttest/build-qwt-Desktop_Qt_5_7_1_MSVC2015_64bit-Debug/lib
+LIBS += -L$$PWD/lib/mingw
 
 CONFIG(debug, debug|release) {
-    LIBS += -lqwtd
+    LIBS += -llibqwtd
 }
 else {
-    LIBS += -lqwt
+    LIBS += -llibqwt
 }
 
 #LIBS += -L/home/tands/prjs/build-libtest-Desktop-Debug -llibtest
