@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
 //    TemplateFun::TmplFun<int>(3, 6);
 
-    CodeSegment::testMem();
+    //CodeSegment::testMem();
 
 
     //return a.exec();
