@@ -23,14 +23,14 @@ int main(int argc, char *argv[])
 //    QtTest qtTst;
 //    qtTst.WriteXML();
 
-    TestTemplate<int> tmplTest;
-    tmplTest.print(2, 3);
+//    TestTemplate<int> tmplTest;
+//    tmplTest.print(2, 3);
 
 //    TemplateFun::TmplFun<int>(3, 6);
 
-    //CodeSegment::testMem();
+    CodeSegment::testArrayInit();
 
 
-    //return a.exec();
-    return 0;
+    return a.exec();
+    //return getchar();
 }

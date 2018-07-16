@@ -36,7 +36,7 @@ int main()
 
    auto f1 = async(task1);  // start task1() asynchronously (now or later or never)
 
-   cin.get();  // read a character (like getchar())
+   //cin.get();  // read a character (like getchar())
 
    cout << "\nwait for the end of task1: " << endl;
    try {

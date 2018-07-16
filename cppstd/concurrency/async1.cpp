@@ -41,19 +41,40 @@ int func2 ()
     return doSomething('+');
 }
 
+double sum(double low, double up)
+{
+    double res = 0;
+    for ( double i= low; i <= up; i++ )
+    {
+        res += i;
+    }
+
+    return res;
+}
+
 int main()
 {
-    std::cout << "starting func1() in background"
-              << " and func2() in foreground:" << std::endl;
+//    std::cout << "starting func1() in background"
+//              << " and func2() in foreground:" << std::endl;
 
-    // start func1() asynchronously (now or later or never):
-    std::future<int> result1(std::async(func1));
+//    // start func1() asynchronously (now or later or never):
+//    std::future<int> result1(std::async(func1));
 
-    int result2 = func2();    // call func2() synchronously (here and now)
+//    int result2 = func2();    // call func2() synchronously (here and now)
 
-    // print result (wait for func1() to finish and add its result to result2
-    int result = result1.get() + result2;
+//    // print result (wait for func1() to finish and add its result to result2
+//    int result = result1.get() + result2;
 
-    std::cout << "\nresult of func1()+func2(): " << result
-              << std::endl;
+//    std::cout << "\nresult of func1()+func2(): " << result
+//              << std::endl;
+
+    std::chrono::system_clock::time_point start_time = std::chrono::system_clock::now();
+    std::future<double> sum1 = std::async(std::launch::async, sum, 0, 5e7);
+    std::future<double> sum2 = std::async(std::launch::deferred, sum, 5e7+1, 1e8);
+    double sumres = sum1.get() + sum2.get();
+//    double sumres = sum(0, 1e8);
+    std::chrono::system_clock::time_point end_time = std::chrono::system_clock::now();
+    std::cout << "\nspend time : " << std::chrono::duration_cast<std::chrono::microseconds>(end_time- start_time).count() << std::endl;
+    std::cout << "sum result : " << sumres << std::endl;
+
 }

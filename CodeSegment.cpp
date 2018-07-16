@@ -9,16 +9,26 @@ CodeSegment::CodeSegment()
 
 void CodeSegment::testMem()
 {
-    int arr[10] = {1, 2, 3,4,5,6,7,8,9,10 };
+    char arr[10] = {1, 2, 3,4,5,6,7,8,9,10 };
     for ( auto d : arr )
     {
-        std::cout<<__func__<<" "<< d<<std::endl;
+        std::cout<<__func__<<" "<< (int)d<<std::endl;
     }
 
-    memset(arr, 1, sizeof(arr) * 10);
+    memset(arr, 1, sizeof(char) * 10);
     for ( auto d : arr )
     {
-        std::cout<<__func__<<" "<< d<<std::endl;
+        std::cout<<__func__<<" "<< (int)d<<std::endl;
+    }
+}
+
+void CodeSegment::testArrayInit()
+{
+    unsigned int sz = 100;
+    unsigned char * arr = new unsigned char[sz]();
+    for ( int i = 0; i < sz; i++ )
+    {
+        std::cout<<__func__<<":"<<(unsigned int)(arr[i])<<std::endl;
     }
 }
 

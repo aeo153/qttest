@@ -56,4 +56,6 @@ int main()
     catch (...) {
         std::cerr << "EXCEPTION " << std::endl;
     }
+
+    return getchar();
 }

@@ -28,8 +28,12 @@ DEFINES += QWT_DLL
 #INCLUDEPATH += /home/tands/prjs/libtest
 INCLUDEPATH += $$PWD/qwt/src
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
+SOURCES += \
+    main.cpp \
+#    cppstd/concurrency/async1.cpp \
+#    cppstd/concurrency/async3.cpp \
+#    cppstd/concurrency/promise1.cpp \
+    mainwindow.cpp \
     testcases.cpp \
     teststd.cpp \
     plot/CurvePlot.cpp \
