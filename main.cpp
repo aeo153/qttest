@@ -6,6 +6,7 @@
 #include "templatetest.cpp"
 #include "qttest.h"
 #include <iostream>
+#include "ClassA.h"
 #include "CodeSegment.h"
 
 int main(int argc, char *argv[])
@@ -17,8 +18,8 @@ int main(int argc, char *argv[])
 //    TestCases tc;
 //    tc.testInitStruct();
 
-    //TestStd stdtest;
-    //stdtest.createfun();
+    TestStd stdtest;
+    stdtest.testCustomData();
 
 //    QtTest qtTst;
 //    qtTst.WriteXML();
@@ -28,8 +29,11 @@ int main(int argc, char *argv[])
 
 //    TemplateFun::TmplFun<int>(3, 6);
 
-    CodeSegment::testArrayInit();
-
+    //CodeSegment::testArrayInit();
+//    ClassA a1;
+//    ClassA a2(2);
+//    ClassA a3(a2);
+////    ClassA a4 = a2;
 
     return a.exec();
     //return getchar();

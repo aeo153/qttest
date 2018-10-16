@@ -43,6 +43,8 @@ public:
     void testNumericLimits();
 
     void timeClock();
+
+    void testCustomData();
 };
 
 #endif // TESTSTD_H
