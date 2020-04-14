@@ -30,6 +30,18 @@ void CodeSegment::testArrayInit()
     {
         std::cout<<__func__<<":"<<(unsigned int)(arr[i])<<std::endl;
     }
+
+    double darr[3] = {1, 2, 3};
+    for ( int i = 0; i < 3; ++i )
+    {
+        std::cout<<__func__<<":"<<darr[i]<<std::endl;
+    }
+
+//    darr = {};
+//    for ( int i = 0; i < 3; ++i )
+//    {
+//        std::cout<<__func__<<":"<<darr[i]<<std::endl;
+//    }
 }
 
 

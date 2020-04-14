@@ -8,13 +8,14 @@
 #include <QPropertyAnimation>
 #include <QPushButton>
 #include <QSequentialAnimationGroup>
-#include <plot/CurvePlot.h>
+//#include <plot/CurvePlot.h>
 #include <QGroupBox>
 #include <QLabel>
 #include <QVBoxLayout>
 #include <math.h>
 #include <qmath.h>
 #include <iostream>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -139,8 +140,8 @@ void MainWindow::onAddResult(int result)
 
 void MainWindow::testCurvePlot()
 {
-    CurvePlotFrm * plot = new CurvePlotFrm(this);
-    setCentralWidget(plot);
+//    CurvePlotFrm * plot = new CurvePlotFrm(this);
+    //setCentralWidget(plot);
 
     //计算曲线数据
     std::vector<double> xs;
@@ -152,7 +153,7 @@ void MainWindow::testCurvePlot()
         ys.push_back(50 + 100 * qSin(x));
     }
 
-    plot->AddCurveData("liver", xs, ys);
+//    plot->AddCurveData("liver", xs, ys);
 }
 
 void MainWindow::onTestTwoPlaceWdt()

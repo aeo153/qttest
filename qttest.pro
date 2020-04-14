@@ -36,7 +36,7 @@ SOURCES += \
     mainwindow.cpp \
     testcases.cpp \
     teststd.cpp \
-    plot/CurvePlot.cpp \
+#    plot/CurvePlot.cpp \
     templatetest.cpp \
     boosttest.cpp \
     threadtest.cpp \
@@ -48,7 +48,7 @@ HEADERS  += mainwindow.h \
     testcases.h \
     teststd.h \
     ComplieTime.h \
-    plot/CurvePlot.h \
+#    plot/CurvePlot.h \
     templatetest.h \
     ArrayPtr.h \
     boosttest.h \
@@ -59,15 +59,15 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-LIBS += -L$$PWD/lib/mingw
+#LIBS += -L$$PWD/lib/mingw
 
 CONFIG(debug, debug|release) {
     #LIBS += -lqwtd
-    LIBS += -llibqwtd
+    #LIBS += -llibqwtd
 }
 else {
     #LIBS += -lqwt
-    LIBS += -llibqwt
+    #LIBS += -llibqwt
 }
 
 #LIBS += -L/home/tands/prjs/build-libtest-Desktop-Debug -llibtest
