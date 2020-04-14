@@ -8,13 +8,14 @@
 #include <QPropertyAnimation>
 #include <QPushButton>
 #include <QSequentialAnimationGroup>
-#include <plot/CurvePlot.h>
+//#include <plot/CurvePlot.h>
 #include <QGroupBox>
 #include <QLabel>
 #include <QVBoxLayout>
 #include <math.h>
 #include <qmath.h>
 #include <iostream>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -139,20 +140,20 @@ void MainWindow::onAddResult(int result)
 
 void MainWindow::testCurvePlot()
 {
-    CurvePlotFrm * plot = new CurvePlotFrm(this);
-    setCentralWidget(plot);
+//    CurvePlotFrm * plot = new CurvePlotFrm(this);
+//    setCentralWidget(plot);
 
-    //计算曲线数据
-    std::vector<double> xs;
-    std::vector<double> ys;
+//    //计算曲线数据
+//    std::vector<double> xs;
+//    std::vector<double> ys;
 
-    for (double x = 0; x <= 300; x += 0.1)
-    {
-        xs.push_back(x);
-        ys.push_back(50 + 100 * qSin(x));
-    }
+//    for (double x = 0; x <= 300; x += 0.1)
+//    {
+//        xs.push_back(x);
+//        ys.push_back(50 + 100 * qSin(x));
+//    }
 
-    plot->AddCurveData("liver", xs, ys);
+//    plot->AddCurveData("liver", xs, ys);
 }
 
 void MainWindow::onTestTwoPlaceWdt()
@@ -185,12 +186,14 @@ void MainWindow::onTestChildObject()
     connect(pLbl2, &QObject::destroyed, this, &MainWindow::onObjectDestroyed);
     connect(pLbl3, &QObject::destroyed, this, &MainWindow::onObjectDestroyed);
     connect(grpBox, &QObject::destroyed, this, &MainWindow::onObjectDestroyed);
+    connect(hLyt, &QObject::destroyed, this, &MainWindow::onObjectDestroyed);
+
     setCentralWidget(grpBox);
 
     //pLbl1->setParent(nullptr);
     //pLbl2->setParent(nullptr);
     //pLbl3->setParent(nullptr);
-    //delete grpBox;//pLbl1,pLbl2不会销毁, pLbl3,grpBox会销毁
+    delete grpBox;//pLbl1,pLbl2不会销毁, pLbl3,grpBox会销毁
     //delete hLyt;//单删除layout,widget不会被删除
 }
 

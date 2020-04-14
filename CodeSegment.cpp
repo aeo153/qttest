@@ -1,6 +1,7 @@
 ﻿#include "CodeSegment.h"
 #include <memory.h>
 #include <iostream>
+#include <chrono>
 
 CodeSegment::CodeSegment()
 {
@@ -24,12 +25,34 @@ void CodeSegment::testMem()
 
 void CodeSegment::testArrayInit()
 {
-    unsigned int sz = 100;
-    unsigned char * arr = new unsigned char[sz]();
-    for ( int i = 0; i < sz; i++ )
+    const unsigned int sz = 100000;
+//    unsigned char * arr = new unsigned char[sz]();
+//    for ( unsigned int i = 0; i < sz; i++ )
+//    {
+//        std::cout<<__func__<<":"<<(unsigned int)(arr[i])<<std::endl;
+//    }
+
+    std::chrono::system_clock::time_point stime = std::chrono::system_clock::now();
+    int dArr1[sz] = {};
+    std::cout<<__func__<<dArr1[10]<<std::endl;
+    std::chrono::system_clock::time_point etime = std::chrono::system_clock::now();
+    std::cout<<__func__<<" spend time:"<<std::chrono::duration_cast<std::chrono::microseconds>(etime- stime).count()<<std::endl;
+
+    stime = std::chrono::system_clock::now();
+    int dArr2[sz];
+    for ( int i = 0; i < sz; ++i )
     {
-        std::cout<<__func__<<":"<<(unsigned int)(arr[i])<<std::endl;
+        dArr2[i] = 0;
     }
+
+    std::cout<<__func__<<dArr2[10]<<std::endl;
+    etime = std::chrono::system_clock::now();
+    std::cout<<__func__<<" spend time:"<<std::chrono::duration_cast<std::chrono::microseconds>(etime- stime).count()<<std::endl;
+
+//    for ( int i = 0; i < sz; i++ )
+//    {
+//        std::cout<<__func__<<" double :"<<dArr[i]<<std::endl;
+//    }
 }
 
 

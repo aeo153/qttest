@@ -447,39 +447,39 @@ void TestStd::timeClock()
 
 void TestStd::testCustomData()
 {
-    //list find_if
-    std::list<UserInfo> userList;
-    userList.push_back(UserInfo(2, "hanmm"));
-    userList.push_back(UserInfo(4, "lilei"));
-    userList.push_back(UserInfo(1, "tom"));
-    userList.push_back(UserInfo(7, "kate"));
+//    //list find_if
+//    std::list<UserInfo> userList;
+//    userList.push_back(UserInfo(2, "hanmm"));
+//    userList.push_back(UserInfo(4, "lilei"));
+//    userList.push_back(UserInfo(1, "tom"));
+//    userList.push_back(UserInfo(7, "kate"));
 
-    auto uiter = std::find_if(userList.begin(), userList.end(), UserFinder(4));
-    std::cout<<"list fine_if user:"<<(*uiter).uid<<" "<<(*uiter).uname<<std::endl;
+//    auto uiter = std::find_if(userList.begin(), userList.end(), UserFinder(4));
+//    std::cout<<"list fine_if user:"<<(*uiter).uid<<" "<<(*uiter).uname<<std::endl;
 
-    userList.erase(std::remove_if(userList.begin(), userList.end(), UserFinder(4)), userList.end());
-    std::cout<<"\n after remove uid 4 from list:"<<std::endl;
-    for ( const auto & aInfo : userList )
-    {
-        std::cout<< aInfo.uid << " "<< aInfo.uname << std::endl;
-    }
+//    userList.erase(std::remove_if(userList.begin(), userList.end(), UserFinder(4)), userList.end());
+//    std::cout<<"\n after remove uid 4 from list:"<<std::endl;
+//    for ( const auto & aInfo : userList )
+//    {
+//        std::cout<< aInfo.uid << " "<< aInfo.uname << std::endl;
+//    }
 
     //set user info
-    std::set<UserInfo> custom_set;
-    custom_set.insert(UserInfo(1, "lilei"));
-    custom_set.insert(UserInfo(4, "hanmeimei"));
-    custom_set.insert(UserInfo(3, "tom"));
-    custom_set.insert(UserInfo(2, "lily"));
-    custom_set.insert(UserInfo(6, "lucy"));
-    custom_set.insert(UserInfo(3, "mike"));
+//    std::set<UserInfo> custom_set;
+//    custom_set.insert(UserInfo(1, "lilei"));
+//    custom_set.insert(UserInfo(4, "hanmeimei"));
+//    custom_set.insert(UserInfo(3, "tom"));
+//    custom_set.insert(UserInfo(2, "lily"));
+//    custom_set.insert(UserInfo(6, "lucy"));
+//    custom_set.insert(UserInfo(3, "mike"));
 
-    auto iter = std::find(custom_set.begin(), custom_set.end(), UserInfo(4, "mike"));
-    std::cout<<"\nset fine user:"<<(*iter).uid<<" "<<(*iter).uname<<std::endl;
-    std::cout<<"custom set:"<<std::endl;
-    for ( const auto & aInfo : custom_set )
-    {
-        std::cout<< aInfo.uid << " "<< aInfo.uname << std::endl;
-    }
+//    auto iter = std::find(custom_set.begin(), custom_set.end(), UserInfo(4, "mike"));
+//    std::cout<<"\nset fine user:"<<(*iter).uid<<" "<<(*iter).uname<<std::endl;
+//    std::cout<<"custom set:"<<std::endl;
+//    for ( const auto & aInfo : custom_set )
+//    {
+//        std::cout<< aInfo.uid << " "<< aInfo.uname << std::endl;
+//    }
 
     //set user info
     std::set<UserInfo *, UserComparePtr> user_set;
@@ -495,16 +495,16 @@ void TestStd::testCustomData()
         std::cout<< (*iter)->uid << " "<< (*iter)->uname << std::endl;
     }
 
-    std::set<std::shared_ptr<UserInfo>, UserCompareSharePtr> usershareptr_set;
-    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(4, "hanmeimei")));
-    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(5, "lucy")));
-    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(1, "lilei")));
-    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(3, "tom")));
-    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(2, "lily")));
+//    std::set<std::shared_ptr<UserInfo>, UserCompareSharePtr> usershareptr_set;
+//    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(4, "hanmeimei")));
+//    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(5, "lucy")));
+//    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(1, "lilei")));
+//    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(3, "tom")));
+//    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(2, "lily")));
 
-    std::cout<<"\nuser shared pointer set:"<<std::endl;
-    for ( std::set<std::shared_ptr<UserInfo> >::iterator iter = usershareptr_set.begin(); iter != usershareptr_set.end(); iter++ )
-    {
-        std::cout<< (*iter)->uid << " "<< (*iter)->uname << std::endl;
-    }
+//    std::cout<<"\nuser shared pointer set:"<<std::endl;
+//    for ( std::set<std::shared_ptr<UserInfo> >::iterator iter = usershareptr_set.begin(); iter != usershareptr_set.end(); iter++ )
+//    {
+//        std::cout<< (*iter)->uid << " "<< (*iter)->uname << std::endl;
+//    }
 }

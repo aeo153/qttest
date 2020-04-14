@@ -12,14 +12,14 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-//    MainWindow w;
-//    w.show();
+    MainWindow w;
+    w.show();
 
 //    TestCases tc;
 //    tc.testInitStruct();
 
-    TestStd stdtest;
-    stdtest.testCustomData();
+//    TestStd stdtest;
+//    stdtest.testCustomData();
 
 //    QtTest qtTst;
 //    qtTst.WriteXML();
@@ -30,10 +30,6 @@ int main(int argc, char *argv[])
 //    TemplateFun::TmplFun<int>(3, 6);
 
     //CodeSegment::testArrayInit();
-//    ClassA a1;
-//    ClassA a2(2);
-//    ClassA a3(a2);
-////    ClassA a4 = a2;
 
     return a.exec();
     //return getchar();
