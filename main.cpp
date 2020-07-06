@@ -11,26 +11,26 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+//    QApplication a(argc, argv);
+//    MainWindow w;
+//    w.show();
 
 //    TestCases tc;
 //    tc.testInitStruct();
 
-//    TestStd stdtest;
-//    stdtest.testCustomData();
+    TestStd stdtest;
+    stdtest.regularExpression();
 
-//    QtTest qtTst;
-//    qtTst.WriteXML();
+    QtTest qtTst;
+    qtTst.testRegular();
 
 //    TestTemplate<int> tmplTest;
 //    tmplTest.print(2, 3);
 
 //    TemplateFun::TmplFun<int>(3, 6);
 
-    //CodeSegment::testArrayInit();
+    //qDebug()<<CodeSegment::Uuid();
 
-    return a.exec();
-    //return getchar();
+    //return a.exec();
+    return getchar();
 }

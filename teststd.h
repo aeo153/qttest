@@ -45,6 +45,8 @@ public:
     void timeClock();
 
     void testCustomData();
+
+    void regularExpression();
 };
 
 #endif // TESTSTD_H

@@ -15,6 +15,7 @@
 #include <QDebug>
 #include "ClassA.h"
 #include <chrono>
+#include <regex>
 
 using namespace std;
 
@@ -507,4 +508,18 @@ void TestStd::testCustomData()
 //    {
 //        std::cout<< (*iter)->uid << " "<< (*iter)->uname << std::endl;
 //    }
+}
+
+void TestStd::regularExpression()
+{
+    std::regex reg("(ROI)(.*)(Fuse)");
+    std::string test_string("ROIPolyData_Tumor3Fuse");
+    bool ret = std::regex_match(test_string, reg);
+    std::cout<<__func__<<" :"<<(ret ? "valid" : "invalid")<<std::endl;
+
+    std::regex qq_reg("[1-9]\\d{4,11}");
+    std::string qq("82398357");
+    ret = std::regex_match(qq, qq_reg);
+    std::cout<<__func__<<" :" << (ret ? "valid" : "invalid") << std::endl;
+
 }

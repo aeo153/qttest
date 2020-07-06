@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QTextCodec>
+#include <iostream>
 
 QtTest::QtTest()
 {
@@ -54,4 +55,13 @@ void QtTest::WriteXML()
     out.setCodec(QTextCodec::codecForName("UTF-8"));
     document.save(out, 4);
     file.close();
+}
+
+void QtTest::testRegular()
+{
+    QRegExp reg("ROIPolyData_Tumor*Fuse");
+    reg.setPatternSyntax(QRegExp::Wildcard);
+    QString test_string("ROIPolyData_Tumor3Fuse");
+    bool ret = reg.exactMatch(test_string);
+    std::cout<<__func__<<" :"<<(ret ? "valid" : "invalid")<<std::endl;
 }

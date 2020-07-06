@@ -2,6 +2,8 @@
 #include <memory.h>
 #include <iostream>
 #include <chrono>
+#include <QUuid>
+#include <QDebug>
 
 CodeSegment::CodeSegment()
 {
@@ -52,7 +54,23 @@ void CodeSegment::testArrayInit()
 //    for ( int i = 0; i < sz; i++ )
 //    {
 //        std::cout<<__func__<<" double :"<<dArr[i]<<std::endl;
-//    }
+    //    }
+}
+
+QString CodeSegment::Uuid()
+{
+    //{1e3f65f9-f3c1-427c-aa41-da32a26d4649}->1ef342aada32
+    QString uid = QUuid::createUuid().toString();
+    qDebug()<<uid;
+    QString retStr = uid.mid(1, 2);
+    int idx = 0;
+    for ( int i =0; i < 4; ++i )
+    {
+        idx = uid.indexOf("-", idx+1);
+        retStr += uid.mid(idx + 1, i < 3 ? 2 : 4);
+    }
+
+    return retStr;
 }
 
 
