@@ -47,6 +47,8 @@ public:
     void testCustomData();
 
     void regularExpression();
+
+    void testRandomNumber();
 };
 
 #endif // TESTSTD_H

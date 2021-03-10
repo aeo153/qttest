@@ -19,10 +19,11 @@ int main(int argc, char *argv[])
 //    tc.testInitStruct();
 
     TestStd stdtest;
-    stdtest.regularExpression();
-
-    QtTest qtTst;
-    qtTst.testRegular();
+    stdtest.testRandomNumber();
+    stdtest.testRandomNumber();
+    stdtest.testRandomNumber();
+    //QtTest qtTst;
+    //qtTst.testRegular();
 
 //    TestTemplate<int> tmplTest;
 //    tmplTest.print(2, 3);

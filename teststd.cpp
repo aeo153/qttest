@@ -16,6 +16,7 @@
 #include "ClassA.h"
 #include <chrono>
 #include <regex>
+#include <random>
 
 using namespace std;
 
@@ -517,9 +518,37 @@ void TestStd::regularExpression()
     bool ret = std::regex_match(test_string, reg);
     std::cout<<__func__<<" :"<<(ret ? "valid" : "invalid")<<std::endl;
 
+    std::regex roireg("(ROI)(.*)(Bone)");
+    ret = std::regex_match("ROI_Bone", roireg);
+    std::cout<<__func__<<" :"<<(ret ? "valid" : "invalid")<<std::endl;
+
+    ret = std::regex_match("ROIPolyData_Bone", roireg);
+    std::cout<<__func__<<" :"<<(ret ? "valid" : "invalid")<<std::endl;
+
+    ret = std::regex_match("RORIPolyData_Bone", roireg);
+    std::cout<<__func__<<" :"<<(ret ? "valid" : "invalid")<<std::endl;
+
     std::regex qq_reg("[1-9]\\d{4,11}");
     std::string qq("82398357");
     ret = std::regex_match(qq, qq_reg);
     std::cout<<__func__<<" :" << (ret ? "valid" : "invalid") << std::endl;
 
+}
+
+void TestStd::testRandomNumber()
+{
+    std::default_random_engine eng;
+    eng.seed(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));
+    std::uniform_real_distribution<double> ds(0.0, 10.0);
+
+    std::cout<<__func__<<" uniform_real_distribution 1:"<<ds(eng)<<std::endl;
+    std::cout<<__func__<<" uniform_real_distribution2:"<<ds(eng)<<std::endl;
+
+    std::uniform_real<double> ur(0.0, 5.0);
+    std::cout<<__func__<<" uniform_real 1:"<<ur(eng)<<std::endl;
+    std::cout<<__func__<<" uniform_real 2:"<<ur(eng)<<std::endl;
+
+    std::random_device rdv;
+    std::cout<<__func__<<" random_device 1:"<<rdv(eng)<<std::endl;
+    std::cout<<__func__<<" random_device 2:"<<rdv(eng)<<std::endl;
 }
