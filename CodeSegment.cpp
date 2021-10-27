@@ -1,6 +1,9 @@
 ﻿#include "CodeSegment.h"
 #include <memory.h>
 #include <iostream>
+#include <chrono>
+#include <QUuid>
+#include <QDebug>
 
 CodeSegment::CodeSegment()
 {
@@ -24,24 +27,50 @@ void CodeSegment::testMem()
 
 void CodeSegment::testArrayInit()
 {
-    unsigned int sz = 100;
-    unsigned char * arr = new unsigned char[sz]();
-    for ( int i = 0; i < sz; i++ )
-    {
-        std::cout<<__func__<<":"<<(unsigned int)(arr[i])<<std::endl;
-    }
-
-    double darr[3] = {1, 2, 3};
-    for ( int i = 0; i < 3; ++i )
-    {
-        std::cout<<__func__<<":"<<darr[i]<<std::endl;
-    }
-
-//    darr = {};
-//    for ( int i = 0; i < 3; ++i )
+    const unsigned int sz = 100000;
+//    unsigned char * arr = new unsigned char[sz]();
+//    for ( unsigned int i = 0; i < sz; i++ )
 //    {
-//        std::cout<<__func__<<":"<<darr[i]<<std::endl;
+//        std::cout<<__func__<<":"<<(unsigned int)(arr[i])<<std::endl;
 //    }
+
+    std::chrono::system_clock::time_point stime = std::chrono::system_clock::now();
+    int dArr1[sz] = {};
+    std::cout<<__func__<<dArr1[10]<<std::endl;
+    std::chrono::system_clock::time_point etime = std::chrono::system_clock::now();
+    std::cout<<__func__<<" spend time:"<<std::chrono::duration_cast<std::chrono::microseconds>(etime- stime).count()<<std::endl;
+
+    stime = std::chrono::system_clock::now();
+    int dArr2[sz];
+    for ( int i = 0; i < sz; ++i )
+    {
+        dArr2[i] = 0;
+    }
+
+    std::cout<<__func__<<dArr2[10]<<std::endl;
+    etime = std::chrono::system_clock::now();
+    std::cout<<__func__<<" spend time:"<<std::chrono::duration_cast<std::chrono::microseconds>(etime- stime).count()<<std::endl;
+
+//    for ( int i = 0; i < sz; i++ )
+//    {
+//        std::cout<<__func__<<" double :"<<dArr[i]<<std::endl;
+    //    }
+}
+
+QString CodeSegment::Uuid()
+{
+    //{1e3f65f9-f3c1-427c-aa41-da32a26d4649}->1ef342aada32
+    QString uid = QUuid::createUuid().toString();
+    qDebug()<<uid;
+    QString retStr = uid.mid(1, 2);
+    int idx = 0;
+    for ( int i =0; i < 4; ++i )
+    {
+        idx = uid.indexOf("-", idx+1);
+        retStr += uid.mid(idx + 1, i < 3 ? 2 : 4);
+    }
+
+    return retStr;
 }
 
 

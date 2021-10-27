@@ -50,6 +50,10 @@ public:
 
     void test_map();
     void test_unordered_map();
+
+    void regularExpression();
+
+    void testRandomNumber();
 };
 
 #endif // TESTSTD_H

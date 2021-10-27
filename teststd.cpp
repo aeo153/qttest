@@ -15,6 +15,8 @@
 #include <QDebug>
 #include "ClassA.h"
 #include <chrono>
+#include <regex>
+#include <random>
 #include <unordered_map>
 
 using namespace std;
@@ -448,39 +450,39 @@ void TestStd::timeClock()
 
 void TestStd::testCustomData()
 {
-    //list find_if
-    std::list<UserInfo> userList;
-    userList.push_back(UserInfo(2, "hanmm"));
-    userList.push_back(UserInfo(4, "lilei"));
-    userList.push_back(UserInfo(1, "tom"));
-    userList.push_back(UserInfo(7, "kate"));
+//    //list find_if
+//    std::list<UserInfo> userList;
+//    userList.push_back(UserInfo(2, "hanmm"));
+//    userList.push_back(UserInfo(4, "lilei"));
+//    userList.push_back(UserInfo(1, "tom"));
+//    userList.push_back(UserInfo(7, "kate"));
 
-    auto uiter = std::find_if(userList.begin(), userList.end(), UserFinder(4));
-    std::cout<<"list fine_if user:"<<(*uiter).uid<<" "<<(*uiter).uname<<std::endl;
+//    auto uiter = std::find_if(userList.begin(), userList.end(), UserFinder(4));
+//    std::cout<<"list fine_if user:"<<(*uiter).uid<<" "<<(*uiter).uname<<std::endl;
 
-    userList.erase(std::remove_if(userList.begin(), userList.end(), UserFinder(4)), userList.end());
-    std::cout<<"\n after remove uid 4 from list:"<<std::endl;
-    for ( const auto & aInfo : userList )
-    {
-        std::cout<< aInfo.uid << " "<< aInfo.uname << std::endl;
-    }
+//    userList.erase(std::remove_if(userList.begin(), userList.end(), UserFinder(4)), userList.end());
+//    std::cout<<"\n after remove uid 4 from list:"<<std::endl;
+//    for ( const auto & aInfo : userList )
+//    {
+//        std::cout<< aInfo.uid << " "<< aInfo.uname << std::endl;
+//    }
 
     //set user info
-    std::set<UserInfo> custom_set;
-    custom_set.insert(UserInfo(1, "lilei"));
-    custom_set.insert(UserInfo(4, "hanmeimei"));
-    custom_set.insert(UserInfo(3, "tom"));
-    custom_set.insert(UserInfo(2, "lily"));
-    custom_set.insert(UserInfo(6, "lucy"));
-    custom_set.insert(UserInfo(3, "mike"));
+//    std::set<UserInfo> custom_set;
+//    custom_set.insert(UserInfo(1, "lilei"));
+//    custom_set.insert(UserInfo(4, "hanmeimei"));
+//    custom_set.insert(UserInfo(3, "tom"));
+//    custom_set.insert(UserInfo(2, "lily"));
+//    custom_set.insert(UserInfo(6, "lucy"));
+//    custom_set.insert(UserInfo(3, "mike"));
 
-    auto iter = std::find(custom_set.begin(), custom_set.end(), UserInfo(4, "mike"));
-    std::cout<<"\nset fine user:"<<(*iter).uid<<" "<<(*iter).uname<<std::endl;
-    std::cout<<"custom set:"<<std::endl;
-    for ( const auto & aInfo : custom_set )
-    {
-        std::cout<< aInfo.uid << " "<< aInfo.uname << std::endl;
-    }
+//    auto iter = std::find(custom_set.begin(), custom_set.end(), UserInfo(4, "mike"));
+//    std::cout<<"\nset fine user:"<<(*iter).uid<<" "<<(*iter).uname<<std::endl;
+//    std::cout<<"custom set:"<<std::endl;
+//    for ( const auto & aInfo : custom_set )
+//    {
+//        std::cout<< aInfo.uid << " "<< aInfo.uname << std::endl;
+//    }
 
     //set user info
     std::set<UserInfo *, UserComparePtr> user_set;
@@ -496,18 +498,60 @@ void TestStd::testCustomData()
         std::cout<< (*iter)->uid << " "<< (*iter)->uname << std::endl;
     }
 
-    std::set<std::shared_ptr<UserInfo>, UserCompareSharePtr> usershareptr_set;
-    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(4, "hanmeimei")));
-    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(5, "lucy")));
-    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(1, "lilei")));
-    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(3, "tom")));
-    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(2, "lily")));
+//    std::set<std::shared_ptr<UserInfo>, UserCompareSharePtr> usershareptr_set;
+//    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(4, "hanmeimei")));
+//    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(5, "lucy")));
+//    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(1, "lilei")));
+//    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(3, "tom")));
+//    usershareptr_set.insert(std::shared_ptr<UserInfo>(new UserInfo(2, "lily")));
 
-    std::cout<<"\nuser shared pointer set:"<<std::endl;
-    for ( std::set<std::shared_ptr<UserInfo> >::iterator iter = usershareptr_set.begin(); iter != usershareptr_set.end(); iter++ )
-    {
-        std::cout<< (*iter)->uid << " "<< (*iter)->uname << std::endl;
-    }
+//    std::cout<<"\nuser shared pointer set:"<<std::endl;
+//    for ( std::set<std::shared_ptr<UserInfo> >::iterator iter = usershareptr_set.begin(); iter != usershareptr_set.end(); iter++ )
+//    {
+//        std::cout<< (*iter)->uid << " "<< (*iter)->uname << std::endl;
+//    }
+}
+
+void TestStd::regularExpression()
+{
+    std::regex reg("(ROI)(.*)(Fuse)");
+    std::string test_string("ROIPolyData_Tumor3Fuse");
+    bool ret = std::regex_match(test_string, reg);
+    std::cout<<__func__<<" :"<<(ret ? "valid" : "invalid")<<std::endl;
+
+    std::regex roireg("(ROI)(.*)(Bone)");
+    ret = std::regex_match("ROI_Bone", roireg);
+    std::cout<<__func__<<" :"<<(ret ? "valid" : "invalid")<<std::endl;
+
+    ret = std::regex_match("ROIPolyData_Bone", roireg);
+    std::cout<<__func__<<" :"<<(ret ? "valid" : "invalid")<<std::endl;
+
+    ret = std::regex_match("RORIPolyData_Bone", roireg);
+    std::cout<<__func__<<" :"<<(ret ? "valid" : "invalid")<<std::endl;
+
+    std::regex qq_reg("[1-9]\\d{4,11}");
+    std::string qq("82398357");
+    ret = std::regex_match(qq, qq_reg);
+    std::cout<<__func__<<" :" << (ret ? "valid" : "invalid") << std::endl;
+
+}
+
+void TestStd::testRandomNumber()
+{
+    std::default_random_engine eng;
+    eng.seed(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));
+    std::uniform_real_distribution<double> ds(0.0, 10.0);
+
+    std::cout<<__func__<<" uniform_real_distribution 1:"<<ds(eng)<<std::endl;
+    std::cout<<__func__<<" uniform_real_distribution2:"<<ds(eng)<<std::endl;
+
+    std::uniform_real<double> ur(0.0, 5.0);
+    std::cout<<__func__<<" uniform_real 1:"<<ur(eng)<<std::endl;
+    std::cout<<__func__<<" uniform_real 2:"<<ur(eng)<<std::endl;
+
+    std::random_device rdv;
+    std::cout<<__func__<<" random_device 1:"<<rdv(eng)<<std::endl;
+    std::cout<<__func__<<" random_device 2:"<<rdv(eng)<<std::endl;
 }
 
 void TestStd::testMove()

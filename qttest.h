@@ -8,6 +8,7 @@ public:
     ~QtTest();
 
     void WriteXML();
+    void testRegular();
 };
 
 #endif

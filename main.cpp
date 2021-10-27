@@ -11,33 +11,32 @@
 
 int main(int argc, char *argv[])
 {
-    //QApplication a(argc, argv);
+//    QApplication a(argc, argv);
 //    MainWindow w;
 //    w.show();
 
 //    TestCases tc;
 //    tc.testInitStruct();
 
+    TestStd stdtest;
+    stdtest.testRandomNumber();
+    stdtest.testRandomNumber();
+    stdtest.testRandomNumber();
+    //QtTest qtTst;
+    //qtTst.testRegular();
     std::cout<<__func__<<std::endl;
     TestStd stdtest;
 //    stdtest.testMove();
     stdtest.test_map();
     stdtest.test_unordered_map();
 
-//    QtTest qtTst;
-//    qtTst.WriteXML();
-
 //    TestTemplate<int> tmplTest;
 //    tmplTest.print(2, 3);
 
 //    TemplateFun::TmplFun<int>(3, 6);
 
+    //qDebug()<<CodeSegment::Uuid();
     //CodeSegment::testArrayInit();
-
-//    ClassA a1;
-//    ClassA a2(2);
-//    ClassA a3(a2);
-////    ClassA a4 = a2;
 
     //return a.exec();
     return getchar();

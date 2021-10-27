@@ -36,8 +36,7 @@ SOURCES += \
     mainwindow.cpp \
     testcases.cpp \
     teststd.cpp \
-#    plot/CurvePlot.cpp \
-    templatetest.cpp \
+#    plot/CurvePlot.cpp \    templatetest.cpp \
     boosttest.cpp \
     threadtest.cpp \
     ClassA.cpp \
@@ -48,8 +47,7 @@ HEADERS  += mainwindow.h \
     testcases.h \
     teststd.h \
     ComplieTime.h \
-#    plot/CurvePlot.h \
-    templatetest.h \
+#    plot/CurvePlot.h \    templatetest.h \
     ArrayPtr.h \
     boosttest.h \
     threadtest.h \
@@ -59,8 +57,7 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-#LIBS += -L$$PWD/lib/mingw
-
+LIBS += -L$$PWD/lib/mingw
 CONFIG(debug, debug|release) {
     #LIBS += -lqwtd
     #LIBS += -llibqwtd
