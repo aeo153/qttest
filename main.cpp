@@ -18,8 +18,11 @@ int main(int argc, char *argv[])
 //    TestCases tc;
 //    tc.testInitStruct();
 
-//    TestStd stdtest;
+    std::cout<<__func__<<std::endl;
+    TestStd stdtest;
 //    stdtest.testMove();
+    stdtest.test_map();
+    stdtest.test_unordered_map();
 
 //    QtTest qtTst;
 //    qtTst.WriteXML();
@@ -29,7 +32,7 @@ int main(int argc, char *argv[])
 
 //    TemplateFun::TmplFun<int>(3, 6);
 
-    CodeSegment::testArrayInit();
+    //CodeSegment::testArrayInit();
 
 //    ClassA a1;
 //    ClassA a2(2);

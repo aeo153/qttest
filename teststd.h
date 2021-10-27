@@ -45,6 +45,11 @@ public:
     void timeClock();
 
     void testCustomData();
+
+    void testMove();
+
+    void test_map();
+    void test_unordered_map();
 };
 
 #endif // TESTSTD_H

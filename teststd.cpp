@@ -15,6 +15,7 @@
 #include <QDebug>
 #include "ClassA.h"
 #include <chrono>
+#include <unordered_map>
 
 using namespace std;
 
@@ -507,4 +508,86 @@ void TestStd::testCustomData()
     {
         std::cout<< (*iter)->uid << " "<< (*iter)->uname << std::endl;
     }
+}
+
+void TestStd::testMove()
+{
+    std::list<UserInfo> users;
+    UserInfo aUser(1, "user1");
+    std::cout<< aUser.uid << " "<< aUser.uname << std::endl;
+    users.push_back(std::move(aUser));
+    std::cout<< aUser.uid << " "<< aUser.uname << std::endl;
+    users.push_back(UserInfo(2, "user2"));
+
+    for( const auto & user : users )
+    {
+        std::cout<< user.uid << " "<<user.uname << std::endl;
+    }
+}
+
+class timer {
+public:
+    clock_t start;
+    clock_t end;
+    string name;
+    timer(string n) {
+        start = clock();
+        name = n;
+    }
+    ~timer() {
+        end = clock();
+        std::cout <<"time:  "<< name <<" "<<(end - start) << std::endl;
+    }
+};
+
+const int num = 100000;
+
+template<typename T>
+void insert(T & conta, string name) {
+    srand((unsigned)time(NULL));
+    timer t1(name);
+    for (int i = 0; i < num / 2; i++) {
+        int key = rand();
+        conta.insert(pair<int, int>(i, i));
+        conta.insert(pair<int, int>(key, i));
+    }
+
+}
+
+template<typename T>
+void find(T & conta, string name) {
+    srand((unsigned)time(NULL));
+    timer t1(name);
+    for (int i = 0; i < num / 2; i++) {
+        int key = rand();
+        conta.find(key);
+        conta.find(i);
+    }
+}
+
+template<typename T>
+void erase(T & conta, string name) {
+    srand((unsigned)time(NULL));
+    timer t1(name);
+    for (int i = 0; i < num / 2; i++) {
+        conta.erase(i);
+        int key = rand();
+        conta.erase(key);
+    }
+}
+
+
+void TestStd::test_map() {
+    std::cout<<__func__<<std::endl;
+    map<int, int> m1;
+    insert<map<int, int> >(m1, "map insert");
+    find<map<int, int> >(m1, "map find");
+    erase<map<int, int> >(m1, "map erase");
+}
+
+void TestStd::test_unordered_map() {
+    unordered_map<int, int> m2;
+    insert<unordered_map<int, int> >(m2, "unordered_map insert");
+    find<unordered_map<int, int> >(m2, "unordered_map find");
+    erase<unordered_map<int, int> >(m2, "unordered_map erase");
 }
