@@ -545,13 +545,13 @@ void TestStd::testRandomNumber()
     std::cout<<__func__<<" uniform_real_distribution 1:"<<ds(eng)<<std::endl;
     std::cout<<__func__<<" uniform_real_distribution2:"<<ds(eng)<<std::endl;
 
-    std::uniform_real<double> ur(0.0, 5.0);
-    std::cout<<__func__<<" uniform_real 1:"<<ur(eng)<<std::endl;
-    std::cout<<__func__<<" uniform_real 2:"<<ur(eng)<<std::endl;
+//    std::uniform_real<double> ur(0.0, 5.0);
+//    std::cout<<__func__<<" uniform_real 1:"<<ur(eng)<<std::endl;
+//    std::cout<<__func__<<" uniform_real 2:"<<ur(eng)<<std::endl;
 
-    std::random_device rdv;
-    std::cout<<__func__<<" random_device 1:"<<rdv(eng)<<std::endl;
-    std::cout<<__func__<<" random_device 2:"<<rdv(eng)<<std::endl;
+//    std::random_device rdv;
+//    std::cout<<__func__<<" random_device 1:"<<rdv(eng)<<std::endl;
+//    std::cout<<__func__<<" random_device 2:"<<rdv(eng)<<std::endl;
 }
 
 void TestStd::testMove()

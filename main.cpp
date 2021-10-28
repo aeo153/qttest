@@ -18,13 +18,12 @@ int main(int argc, char *argv[])
 //    TestCases tc;
 //    tc.testInitStruct();
 
-    TestStd stdtest;
-    stdtest.testRandomNumber();
-    stdtest.testRandomNumber();
-    stdtest.testRandomNumber();
+//    TestStd stdtest;
+//    stdtest.testRandomNumber();
+//    stdtest.testRandomNumber();
+//    stdtest.testRandomNumber();
     //QtTest qtTst;
     //qtTst.testRegular();
-    std::cout<<__func__<<std::endl;
     TestStd stdtest;
 //    stdtest.testMove();
     stdtest.test_map();
