@@ -53,7 +53,8 @@ HEADERS  += mainwindow.h \
     threadtest.h \
     ClassA.h \
     CodeSegment.h \
-    qttest.h
+    qttest.h \
+    UtilsDef.h
 
 FORMS    += mainwindow.ui
 

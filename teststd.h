@@ -54,6 +54,8 @@ public:
     void regularExpression();
 
     void testRandomNumber();
+
+    void splitString();
 };
 
 #endif // TESTSTD_H

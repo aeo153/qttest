@@ -14,10 +14,10 @@
 #include <fstream>
 #include <QDebug>
 #include "ClassA.h"
-#include <chrono>
 #include <regex>
 #include <random>
 #include <unordered_map>
+#include "UtilsDef.h"
 
 using namespace std;
 
@@ -434,18 +434,14 @@ void TestStd::testNumericLimits()
 
 void TestStd::timeClock()
 {
-    std::chrono::system_clock::time_point begin_time = std::chrono::system_clock::now();
-
+    START_TIMER_VAR
     for ( int i = 0; i < 1e5; i++ )
     {
         std::cout<<__func__<<" "<<i<<std::endl;
     }
 
-    std::chrono::system_clock::time_point end_time = std::chrono::system_clock::now();
-
-    std::cout<<__func__<<" spend time:"<<std::chrono::duration_cast<std::chrono::milliseconds>(end_time- begin_time).count()<<std::endl;
-
-    std::cout<<__func__<<" time_t:"<<std::chrono::system_clock::to_time_t(begin_time)<<std::endl;
+    END_TIMER_VAR
+    std::cout<<__func__<<" time_t:"<<std::chrono::system_clock::to_time_t(stime)<<std::endl;
 }
 
 void TestStd::testCustomData()
@@ -551,7 +547,19 @@ void TestStd::testRandomNumber()
 
 //    std::random_device rdv;
 //    std::cout<<__func__<<" random_device 1:"<<rdv(eng)<<std::endl;
-//    std::cout<<__func__<<" random_device 2:"<<rdv(eng)<<std::endl;
+    //    std::cout<<__func__<<" random_device 2:"<<rdv(eng)<<std::endl;
+}
+
+void TestStd::splitString()
+{
+    std::string srcstr("123|456|789");
+    std::stringstream sstr(srcstr);
+    std::string substr;
+    char sp = '|';
+    while ( std::getline(sstr, substr, sp) )
+    {
+        std::cout<<substr<<std::endl;
+    }
 }
 
 void TestStd::testMove()
@@ -569,23 +577,7 @@ void TestStd::testMove()
     }
 }
 
-class timer {
-public:
-    clock_t start;
-    clock_t end;
-    string name;
-    timer(string n) {
-        start = clock();
-        name = n;
-    }
-    ~timer() {
-        end = clock();
-        std::cout <<"time:  "<< name <<" "<<(end - start) << std::endl;
-    }
-};
-
 const int num = 100000;
-
 template<typename T>
 void insert(T & conta, string name) {
     srand((unsigned)time(NULL));

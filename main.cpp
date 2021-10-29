@@ -26,8 +26,9 @@ int main(int argc, char *argv[])
     //qtTst.testRegular();
     TestStd stdtest;
 //    stdtest.testMove();
-    stdtest.test_map();
-    stdtest.test_unordered_map();
+//    stdtest.test_map();
+//    stdtest.test_unordered_map();
+    stdtest.splitString();
 
 //    TestTemplate<int> tmplTest;
 //    tmplTest.print(2, 3);
