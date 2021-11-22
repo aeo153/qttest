@@ -29,4 +29,16 @@ private:
     int m_number{0};
 };
 
+class SubClassA : public ClassA
+{
+public:
+    explicit SubClassA();
+    explicit SubClassA(int num);
+    explicit SubClassA(const SubClassA & other);
+
+private:
+    int b = 100;
+
+};
+
 #endif // CLASSA_H

@@ -29,3 +29,21 @@ float Functor::operator()(const float & a, const float & b) const
 {
     return a + b;
 }
+
+SubClassA::SubClassA()
+    :ClassA()
+{
+
+}
+
+SubClassA::SubClassA(int num)
+    :ClassA(num)
+{
+
+}
+
+SubClassA::SubClassA(const SubClassA &other)
+    :ClassA(other)
+{
+    b = other.b;
+}

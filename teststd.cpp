@@ -434,13 +434,13 @@ void TestStd::testNumericLimits()
 
 void TestStd::timeClock()
 {
-    START_TIMER_VAR
+    START_TIMER
     for ( int i = 0; i < 1e5; i++ )
     {
         std::cout<<__func__<<" "<<i<<std::endl;
     }
 
-    END_TIMER_VAR
+    STOP_TIMER("");
     std::cout<<__func__<<" time_t:"<<std::chrono::system_clock::to_time_t(stime)<<std::endl;
 }
 

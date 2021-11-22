@@ -4,14 +4,13 @@
 #include <string>
 #include <chrono>
 
-#define START_TIMER_VAR std::chrono::system_clock::time_point stime = std::chrono::system_clock::now();
-#define START_TIMER stime = std::chrono::system_clock::now();
+#define START_TIMER auto stime = std::chrono::system_clock::now();
+#define START_TIMER_NODEF stime = std::chrono::system_clock::now();
 
-#define END_TIMER_VAR std::chrono::system_clock::time_point etime = std::chrono::system_clock::now();\
-    std::cout<<__func__<<" spend time:"<<std::chrono::duration_cast<std::chrono::milliseconds>(etime- stime).count()<<std::endl;
-
-#define END_TIMER etime = std::chrono::system_clock::now();\
-    std::cout<<__func__<<" spend time:"<<std::chrono::duration_cast<std::chrono::milliseconds>(etime- stime).count()<<std::endl;
+#define STOP_TIMER(msg) auto etime = std::chrono::system_clock::now();\
+    std::cout<<__func__<<" "<<__LINE__<<" "<< (msg) <<" elasped:"<<std::chrono::duration_cast<std::chrono::milliseconds>(etime- stime).count()<<std::endl;
+#define STOP_TIMER_NODEF(msg) etime = std::chrono::system_clock::now();\
+    std::cout<<__func__<<" "<<__LINE__<<" "<< (msg) <<" elasped:"<<std::chrono::duration_cast<std::chrono::milliseconds>(etime- stime).count()<<std::endl;
 
 class timer {
 public:

@@ -24,11 +24,11 @@ int main(int argc, char *argv[])
 //    stdtest.testRandomNumber();
     //QtTest qtTst;
     //qtTst.testRegular();
-    TestStd stdtest;
+   // TestStd stdtest;
 //    stdtest.testMove();
 //    stdtest.test_map();
 //    stdtest.test_unordered_map();
-    stdtest.splitString();
+    //stdtest.splitString();
 
 //    TestTemplate<int> tmplTest;
 //    tmplTest.print(2, 3);
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 //    TemplateFun::TmplFun<int>(3, 6);
 
     //qDebug()<<CodeSegment::Uuid();
-    //CodeSegment::testArrayInit();
+    CodeSegment::SprintfTest();
 
     //return a.exec();
     return getchar();

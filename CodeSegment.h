@@ -5,14 +5,14 @@
 
 
 
-class CodeSegment
+namespace CodeSegment
 {
-public:
-    CodeSegment();
-    static void testMem();
-    static void testArrayInit();
-
-    static QString Uuid();
-};
+    void testMem();
+    void testArrayInit();
+    void initCharArray();
+    void testTypeid();
+    QString Uuid();
+    void SprintfTest();
+}
 
 #endif // CODESEGMENT_H

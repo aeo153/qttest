@@ -1,14 +1,13 @@
-﻿#include "CodeSegment.h"
+﻿#include "ClassA.h"
+#include "CodeSegment.h"
 #include <memory.h>
 #include <iostream>
 #include <chrono>
 #include <QUuid>
 #include <QDebug>
-
-CodeSegment::CodeSegment()
-{
-
-}
+#include <typeinfo>
+#include "UtilsDef.h"
+#include <sstream>
 
 void CodeSegment::testMem()
 {
@@ -34,27 +33,37 @@ void CodeSegment::testArrayInit()
 //        std::cout<<__func__<<":"<<(unsigned int)(arr[i])<<std::endl;
 //    }
 
-    std::chrono::system_clock::time_point stime = std::chrono::system_clock::now();
-    int dArr1[sz] = {};
-    std::cout<<__func__<<dArr1[10]<<std::endl;
-    std::chrono::system_clock::time_point etime = std::chrono::system_clock::now();
-    std::cout<<__func__<<" spend time:"<<std::chrono::duration_cast<std::chrono::microseconds>(etime- stime).count()<<std::endl;
+    START_TIMER;
+    int dArr1[sz];
+    std::cout<<__func__<<" 10="<<dArr1[10]<<std::endl;
+    STOP_TIMER("");
 
-    stime = std::chrono::system_clock::now();
+    START_TIMER_NODEF
     int dArr2[sz];
-    for ( int i = 0; i < sz; ++i )
+    for ( uint32_t i = 0; i < sz; ++i )
     {
         dArr2[i] = 0;
     }
 
-    std::cout<<__func__<<dArr2[10]<<std::endl;
-    etime = std::chrono::system_clock::now();
-    std::cout<<__func__<<" spend time:"<<std::chrono::duration_cast<std::chrono::microseconds>(etime- stime).count()<<std::endl;
+    std::cout<<__func__<<" 10="<<dArr2[10]<<std::endl;
+    STOP_TIMER_NODEF("");
 
 //    for ( int i = 0; i < sz; i++ )
 //    {
 //        std::cout<<__func__<<" double :"<<dArr[i]<<std::endl;
     //    }
+}
+
+void CodeSegment::initCharArray()
+{
+    const unsigned int sz = 10000;
+    char * pch = new char[sz];
+    //int pch[100000] = {};
+    memset(pch, 128, sizeof(char) * sz);
+    for ( uint32_t i = 0; i < sz; i += 100)
+    {
+        std::cout<<i<<" "<<short(pch[i])<<std::endl;
+    }
 }
 
 QString CodeSegment::Uuid()
@@ -71,6 +80,14 @@ QString CodeSegment::Uuid()
     }
 
     return retStr;
+}
+
+void CodeSegment::testTypeid()
+{
+    SubClassA * sub = new SubClassA;
+    ClassA * pSub = sub;
+    std::cout<<typeid(sub).name()<<" " <<typeid(pSub).name()<<std::endl;
+
 }
 
 
@@ -569,3 +586,49 @@ QString CodeSegment::Uuid()
 
 //QDir dir;
 //qDebug()<<dir.rmpath("E://ftp//sub1//sub2//sub3");
+
+
+void CodeSegment::SprintfTest()
+{
+    //结论：sprintf效率更高
+    int a = 1, b =2, c = 3;
+    std::string dirpath("kjdhfk");
+    int num = 100000;
+
+    START_TIMER;
+    for ( int i = 0; i < num; ++i )
+    {
+        char chrarr[200];
+        sprintf(chrarr, "%s_%d_%d_%d", dirpath.data(), a, b, c);
+        if ( i %10000 == 0 )
+        {
+            std::cout<<chrarr<<std::endl;
+        }
+    }
+    STOP_TIMER("sprintf");//SprintfTest 607 sprintf elasped:11
+
+    START_TIMER_NODEF;
+    for ( int i = 0; i < num; ++i )
+    {
+        std::string str(dirpath);
+        str = dirpath + ("_"+std::to_string(a)+"_"+std::to_string(b)+"_"+std::to_string(c));
+        if ( i %10000 == 0 )
+        {
+            std::cout<<str<<std::endl;
+        }
+    }
+    STOP_TIMER_NODEF("string+");//SprintfTest 619 string+ elasped:42
+
+    START_TIMER_NODEF;
+    for ( int i = 0; i < num; ++i )
+    {
+        std::stringstream sstr;
+        sstr<<dirpath<<"_"<<a<<"_"<<b<<"_"<<c;
+        std::string str = sstr.str();
+        if ( i %10000 == 0 )
+        {
+            std::cout<<str<<std::endl;
+        }
+    }
+    STOP_TIMER_NODEF("stringstream+");//SprintfTest 633 stringstream+ elasped:73
+}
