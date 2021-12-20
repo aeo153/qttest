@@ -592,13 +592,13 @@ void CodeSegment::SprintfTest()
 {
     //结论：sprintf效率更高
     int a = 1, b =2, c = 3;
-    std::string dirpath("kjdhfk");
+    std::string dirpath("abcdefghijklmnopqestuvwxyz");
     int num = 100000;
 
     START_TIMER;
     for ( int i = 0; i < num; ++i )
     {
-        char chrarr[200];
+        char chrarr[30];
         sprintf(chrarr, "%s_%d_%d_%d", dirpath.data(), a, b, c);
         if ( i %10000 == 0 )
         {
@@ -631,4 +631,48 @@ void CodeSegment::SprintfTest()
         }
     }
     STOP_TIMER_NODEF("stringstream+");//SprintfTest 633 stringstream+ elasped:73
+}
+
+void CodeSegment::loopvar()
+{
+    int num = 1e6;
+    START_TIMER;
+    double sqrt2  = sqrt(2.0) / 2;
+    double sin05 = sin(0.5);
+    double val;
+    for ( int i = 0; i < num; ++i )
+    {
+        val = sqrt2 * i * sin05;
+    }
+
+    STOP_TIMER(val);
+
+    START_TIMER_NODEF;
+    for ( int i = 0; i < num; ++i )
+    {
+        val = sqrt(1 + i * 2.0) / 2 * i * sin( i * 0.5);
+    }
+
+    STOP_TIMER_NODEF(val);
+}
+
+constexpr unsigned int jch(unsigned int n)
+{
+    //COUT_FUNC_INFO(n);
+    // #pragma message( "Compiling"__FILE__ )
+    return n == 1 ? 1 : n * jch(n-1);
+}
+
+enum E_code
+{
+    e_type1,
+    e_type2,
+    e_type3
+};
+
+void CodeSegment::testConstexpr()
+{
+    //COUT_FUNC_INFO( jch(10) )
+    double type = e_type1;
+    std::cout<<typeid(type).name()<<" "<<type<<std::endl;
 }

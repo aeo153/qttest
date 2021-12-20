@@ -4,6 +4,8 @@
 #include <functional>
 #include <vector>
 
+#include <filesystem>
+
 enum E_ColorType
 {
     e_red = 0,
@@ -56,6 +58,10 @@ public:
     void testRandomNumber();
 
     void splitString();
+
+    void filesystem(const std::filesystem::path & pth);
+
+    void iterator();
 };
 
 #endif // TESTSTD_H

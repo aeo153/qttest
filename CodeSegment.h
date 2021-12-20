@@ -13,6 +13,8 @@ namespace CodeSegment
     void testTypeid();
     QString Uuid();
     void SprintfTest();
+    void loopvar();
+    void testConstexpr();
 }
 
 #endif // CODESEGMENT_H

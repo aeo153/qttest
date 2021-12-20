@@ -18,7 +18,6 @@
 #include <random>
 #include <unordered_map>
 #include "UtilsDef.h"
-
 using namespace std;
 
 TestStd::TestStd()
@@ -560,6 +559,49 @@ void TestStd::splitString()
     {
         std::cout<<substr<<std::endl;
     }
+}
+
+namespace filesys = std::filesystem;
+void TestStd::filesystem(const std::filesystem::path & pth)
+{
+    //std::string pathstr("D:/manual/dicom");
+    if ( !std::filesystem::exists(pth) )
+    {
+        COUT_FUNC_INFO("dir not exists:" + pth.generic_string());
+        return;
+    }
+
+    std::filesystem::directory_entry direntry(pth);
+    std::cout << (direntry.status().type() == std::filesystem::file_type::directory) <<std::endl;
+    std::filesystem::directory_iterator diriter(pth);
+    std::vector<filesys::path> dirpaths;
+    for ( const auto & iter : diriter )
+    {
+        //std::cout<<iter.path().filename().string()<<" type:"<<static_cast<int>(iter.status().type())<<std::endl;
+        std::cout<<iter.path()<<std::endl;
+        if ( iter.is_directory() )
+        {
+            dirpaths.push_back(iter.path());
+        }
+    }
+
+    for ( const auto & aPath : dirpaths )
+    {
+        this->filesystem(aPath);
+    }
+
+}
+
+void TestStd::iterator()
+{
+    std::list< int > lst = {1, 2, 3, 4, 5};
+    auto iter = lst.begin();
+    auto iter2 = std::next(iter, 2);
+    std::cout << *iter2 << std::endl;
+
+    //iter = lst.begin();
+    std::advance(iter, 2);
+    std::cout << *iter << std::endl;
 }
 
 void TestStd::testMove()

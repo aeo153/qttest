@@ -8,6 +8,7 @@
 #include <iostream>
 #include "ClassA.h"
 #include "CodeSegment.h"
+#include "UtilsDef.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,20 +16,24 @@ int main(int argc, char *argv[])
 //    MainWindow w;
 //    w.show();
 
+    std::locale::global(std::locale(""));
+    std::setlocale(LC_CTYPE, "");
+    std::wcout.imbue(std::locale(""));
 //    TestCases tc;
 //    tc.testInitStruct();
 
-//    TestStd stdtest;
-//    stdtest.testRandomNumber();
-//    stdtest.testRandomNumber();
-//    stdtest.testRandomNumber();
-    //QtTest qtTst;
-    //qtTst.testRegular();
-   // TestStd stdtest;
-//    stdtest.testMove();
-//    stdtest.test_map();
-//    stdtest.test_unordered_map();
-    //stdtest.splitString();
+//    TestStd stdtst;
+//    stdtst.iterator();
+
+    std::cout<<RED     <<"Hello, World! in RED\n";
+    std::cout<<GREEN    <<"Hello, World! in GREEN\n";
+    std::cout<<YELLOW   <<"Hello, World! in YELLOW\n";
+    std::cout<<BLUE     <<"Hello, World! in BLUE\n";
+    std::cout<<MAGENTA  <<"Hello, World! in MAGENTA\n";
+    std::cout<<CYAN     <<"Hello, World! in CYAN\n";
+    std::cout<<WHITE    <<"Hello, World! in WHITE\n";
+    std::cout<<BOLDRED  <<"Hello, World! in BOLDRED\n";
+    std::cout<<BOLDCYAN <<"Hello, World! in BOLDCYAN\n";
 
 //    TestTemplate<int> tmplTest;
 //    tmplTest.print(2, 3);
@@ -36,7 +41,7 @@ int main(int argc, char *argv[])
 //    TemplateFun::TmplFun<int>(3, 6);
 
     //qDebug()<<CodeSegment::Uuid();
-    CodeSegment::SprintfTest();
+    //CodeSegment::testConstexpr();
 
     //return a.exec();
     return getchar();

@@ -5,6 +5,8 @@
 #include <QTextStream>
 #include <QTextCodec>
 #include <iostream>
+#include <QLocale>
+#include <QRegExp>
 
 QtTest::QtTest()
 {
@@ -52,7 +54,7 @@ void QtTest::WriteXML()
     child_elem.appendChild(sub_child_elem);
 
     QTextStream out( &file );
-    out.setCodec(QTextCodec::codecForName("UTF-8"));
+    out.setLocale(QLocale::system());
     document.save(out, 4);
     file.close();
 }

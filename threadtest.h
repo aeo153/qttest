@@ -1,6 +1,7 @@
 ﻿#ifndef THREADTEST_H
 #define THREADTEST_H
 #include <thread>
+#include <functional>
 
 class ThreadTest
 {
